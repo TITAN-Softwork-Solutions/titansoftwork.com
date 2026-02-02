@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TITAN Softwork Solutions | Advanced Security Engineering</title>
+    <meta
+      name="description"
+      content="TITAN Softwork Solutions builds advanced offensive research tooling and resilient defensive systems. Blue-team and red-team software engineering, research, and development."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#050506" />
+
+    <meta property="og:site_name" content="TITAN Softwork Solutions" />
+    <meta property="og:title" content="TITAN Softwork Solutions" />
+    <meta
+      property="og:description"
+      content="Advanced offensive research tooling and resilient defensive systems. Blue-team and red-team software engineering, research, and development."
+    />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TITAN Softwork Solutions" />
+    <meta
+      name="twitter:description"
+      content="Advanced offensive research tooling and resilient defensive systems. Blue-team and red-team software engineering, research, and development."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <header class="site-header" role="banner">
+        <div class="site-header__inner">
+          <a class="site-brand" href="#home" aria-label="TITAN Softwork Solutions Home">
+            <span class="site-brand__mark" aria-hidden="true"></span>
+            <span class="site-brand__text">
+              <span class="site-brand__name">TITAN</span>
+              <span class="site-brand__sub">Softwork Solutions</span>
+            </span>
+          </a>
+
+          <nav class="site-nav" aria-label="Primary">
+            <div class="site-nav__item" data-menu="projects">
+              <a class="site-nav__link" href="#projects">
+                Projects <span class="site-nav__arrow" aria-hidden="true">&gt;</span>
+              </a>
+              <div class="site-nav__dropdown" role="menu">
+                <a data-repo="CCGT-Packer" href="https://github.com/TITAN-Softwork-Solutions/CCGT-Packer" target="_blank" rel="noreferrer">CCGT-Packer</a>
+                <a data-repo="Regera" href="https://github.com/TITAN-Softwork-Solutions/Regera" target="_blank" rel="noreferrer">Regera</a>
+                <a data-repo="Vigil" href="https://github.com/TITAN-Softwork-Solutions/Vigil" target="_blank" rel="noreferrer">Vigil</a>
+              </div>
+            </div>
+
+            <div class="site-nav__item" data-menu="community">
+              <a class="site-nav__link" href="#community">
+                Community <span class="site-nav__arrow" aria-hidden="true">&gt;</span>
+              </a>
+              <div class="site-nav__dropdown" role="menu">
+                <a href="https://hub.titansoftwork.com" target="_blank" rel="noreferrer">Discord</a>
+              </div>
+            </div>
+
+            <div class="site-nav__item" data-menu="github">
+              <a class="site-nav__link" href="https://github.com/TITAN-Softwork-Solutions" target="_blank" rel="noreferrer">
+                GitHub <span class="site-nav__arrow" aria-hidden="true">&gt;</span>
+              </a>
+              <div class="site-nav__dropdown" role="menu">
+                <a href="https://github.com/TITAN-Softwork-Solutions" target="_blank" rel="noreferrer">Organization</a>
+              </div>
+            </div>
+
+            <div class="site-nav__item" data-menu="contact">
+              <a class="site-nav__link" href="#contact">
+                Contact <span class="site-nav__arrow" aria-hidden="true">&gt;</span>
+              </a>
+              <div class="site-nav__dropdown" role="menu">
+                <a href="#contact">Inquiries</a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <main class="page" role="main">
+        <section id="home" class="hero" aria-label="TITAN Interactive Globe">
+          <div id="stage" class="hero__stage" aria-label="Interactive globe stage">
+            <canvas id="gl"></canvas>
+            <div id="hud"></div>
+          </div>
+
+          <div class="hero__overlay" aria-hidden="true"></div>
+
+          <div class="hero__copy">
+            <h1 class="hero__headline">TITAN Softworks</h1>
+            <p class="hero__sub">Built to break systems. Built to harden them.</p>
+
+            <div class="hero__ctaRow">
+              <a class="cta cta--primary" href="#projects">View projects</a>
+              <a class="cta cta--ghost" href="#contact">Contact</a>
+              <a class="cta cta--ghost" href="https://github.com/TITAN-Softwork-Solutions" target="_blank" rel="noreferrer">GitHub org</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="program" class="section section--program">
+          <div class="container">
+            <div class="section__eyebrow">Program focus</div>
+            <h2 class="section__title">Advanced security engineering, end-to-end.</h2>
+            <p class="section__lead">
+              TITAN Softwork Solutions develops offensive and defensive systems as a single engineering program: research,
+              prototyping, and hardening built to withstand real-world analysis.
+            </p>
+
+            <div class="grid grid--3 stagger">
+              <article class="pillar">
+                <h3 class="pillar__title">Offensive research tooling</h3>
+                <p class="pillar__text">
+                  Deep Windows x64 instrumentation, syscall research, evasion analysis, and bespoke tooling that prioritizes
+                  stealth and control.
+                </p>
+                <div class="pillar__tags">
+                  <span>Syscalls</span>
+                  <span>Reverse engineering</span>
+                  <span>R&amp;D</span>
+                </div>
+              </article>
+
+              <article class="pillar">
+                <h3 class="pillar__title">Resilient defensive systems</h3>
+                <p class="pillar__text">
+                  Detection engineering, telemetry pipelines, and system hardening engineered for durability under active adversaries.
+                </p>
+                <div class="pillar__tags">
+                  <span>Telemetry pipelines</span>
+                  <span>Resilience testing</span>
+                  <span>Control validation</span>
+                </div>
+              </article>
+
+              <article class="pillar">
+                <h3 class="pillar__title">Blue + Red tooling</h3>
+                <p class="pillar__text">
+                  A unified pipeline where offensive techniques inform defensive controls, producing tools that are research-grade
+                  and operationally relevant.
+                </p>
+                <div class="pillar__tags">
+                  <span>Blue + Red</span>
+                  <span>Systems research</span>
+                  <span>Prototype to product</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" class="section section--projects section--light">
+          <div class="container">
+            <div class="section__eyebrow">Open research</div>
+            <h2 class="section__title">Featured TITAN projects</h2>
+            <p class="section__lead">
+              Research tooling and defensive systems from the TITAN Softwork Solutions GitHub organization.
+            </p>
+
+            <div class="projectBar">
+              <div class="projectBar__label">GitHub org</div>
+              <div class="projectBar__value">
+                <a href="https://github.com/TITAN-Softwork-Solutions" target="_blank" rel="noreferrer">github.com/TITAN-Softwork-Solutions</a>
+              </div>
+              <div class="projectBar__cta">
+                <a class="cta cta--dark" href="https://github.com/TITAN-Softwork-Solutions" target="_blank" rel="noreferrer">Browse repositories</a>
+              </div>
+            </div>
+
+            <div class="grid grid--3 stagger">
+              <article class="project">
+                <div class="project__top">
+                  <div class="project__name">CCGT-Packer</div>
+                  <div class="project__meta">Post-build string encryption packing tool</div>
+                </div>
+                <p class="project__text">
+                  CCGT is a post-build string protection tool for Windows x64 binaries. It scans a compiled executable for eligible
+                  strings, encrypts them, and writes a compact metadata table into a dedicated PE section (.ccgtr). At runtime,
+                  a lightweight header-only runtime (ccgt_runtime.h) decrypts protected regions before the program uses them.
+                </p>
+                <p class="project__text">
+                  This approach reduces exposure of sensitive strings in static analysis workflows (strings.exe, YARA, bulk IOC
+                  extraction, and casual reverse engineering).
+                </p>
+                <div class="project__links">
+                  <a href="https://github.com/TITAN-Softwork-Solutions/CCGT-Packer" target="_blank" rel="noreferrer">Repository</a>
+                </div>
+              </article>
+
+              <article class="project">
+                <div class="project__top">
+                  <div class="project__name">Regera</div>
+                  <div class="project__meta">High-entropy compile-time string encryption for Rust</div>
+                </div>
+                <p class="project__text">
+                  Regera delivers compile-time string encryption for Rust, backed by AEAD, ChaCha20, and handrolled mutation engines.
+                  It turns literals into encrypted blobs at build time and injects tiny decrypt shims at runtime.
+                </p>
+                <p class="project__text">
+                  Single-value macros return a zeroizing SecretStr, while multi-value macros return owned Strings for ergonomic
+                  destructuring.
+                </p>
+                <div class="project__links">
+                  <a href="https://github.com/TITAN-Softwork-Solutions/Regera" target="_blank" rel="noreferrer">Repository</a>
+                </div>
+              </article>
+
+              <article class="project">
+                <div class="project__top">
+                  <div class="project__name">Vigil</div>
+                  <div class="project__meta">Blue-team ETW telemetry for sensitive file access</div>
+                </div>
+                <p class="project__text">
+                  Vigil is a lightweight Windows blue-team telemetry utility that detects untrusted processes accessing protected
+                  filesystem resources using kernel ETW.
+                </p>
+                <div class="project__links">
+                  <a href="https://github.com/TITAN-Softwork-Solutions/Vigil" target="_blank" rel="noreferrer">Repository</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="founder" class="section section--founder">
+          <div class="container">
+            <div class="section__eyebrow">Leadership</div>
+            <h2 class="section__title">Owner and founder</h2>
+            <p class="section__lead">
+              TITAN is founded and led by
+              <a href="https://github.com/dutchpsycho" target="_blank" rel="noreferrer">dutchpsycho</a>.
+            </p>
+
+            <div class="split stagger">
+              <article class="founderCard">
+                <div class="founderCard__label">Founder</div>
+                <h3 class="founderCard__name">dutchpsycho</h3>
+                <p class="founderCard__text">
+                  Owner and lead engineer for TITAN Softwork Solutions. Research spans offensive engineering, system hardening,
+                  and the design of blue-team and red-team tooling that informs defensive controls.
+                </p>
+                <div class="founderCard__links">
+                  <a class="cta cta--ghost" href="https://github.com/dutchpsycho" target="_blank" rel="noreferrer">GitHub profile</a>
+                </div>
+              </article>
+
+              <article class="project project--featured">
+                <div class="project__top">
+                  <div class="project__name">ActiveBreach Engine</div>
+                  <div class="project__meta">SysWhispers and HellsGate successor - direct syscall execution framework</div>
+                </div>
+                <p class="project__text">
+                  ActiveBreach is a fully dynamic direct syscall framework for Windows 10/11 x64, designed as a modern successor
+                  to tools like SysWhispers and Hell's Gate. Inspired by MDSEC research on bypassing user-mode hooks, it targets
+                  key detection vectors such as static syscall patterns, suspicious call stacks, and hooked API usage.
+                </p>
+                <p class="project__text">
+                  The Rust implementation features JIT memory encryption, a stringless design, and rotating encrypted stubs.
+                </p>
+                <div class="project__links">
+                  <a href="https://github.com/dutchpsycho/ActiveBreach-Engine" target="_blank" rel="noreferrer">Repository</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="community" class="section section--community section--light">
+          <div class="container">
+            <div class="section__eyebrow">Community</div>
+            <h2 class="section__title">Discord updates and collaboration</h2>
+            <p class="section__lead">
+              Follow releases, research notes, project updates, and ask questions or get help through the TITAN community hub.
+            </p>
+
+            <div class="split">
+              <div class="communityCard">
+                <div class="communityCard__label">Discord</div>
+                <p class="communityCard__text">
+                  Follow announcements, releases, and member activity through the TITAN community hub on Discord.
+                </p>
+                <div class="communityCard__links">
+                  <a class="cta cta--dark" href="https://hub.titansoftwork.com" target="_blank" rel="noreferrer">Open hub</a>
+                </div>
+              </div>
+                <div
+                  class="communityWidget"
+                  data-discord-widget
+                  data-invite="yUWyvT9JyP"
+                >
+                  <a
+                    class="communityWidget__frame"
+                    data-discord-link
+                    href="https://hub.titansoftwork.com"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <div class="communityWidget__title">Discord</div>
+
+                    <div class="communityWidget__stats">
+                      <div class="communityWidget__stat">
+                        <div class="communityWidget__num">
+                          <span class="communityWidget__numValue" data-discord-online>—</span>
+                          <span class="communityWidget__numLabel">Online</span>
+                        </div>
+                      </div>
+
+                      <div class="communityWidget__divider"></div>
+
+                      <div class="communityWidget__stat">
+                        <div class="communityWidget__num">
+                          <span class="communityWidget__numValue" data-discord-members>—</span>
+                          <span class="communityWidget__numLabel">Members</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="communityWidget__note">
+                      Live member counts from Discord.
+                    </div>
+                  </a>
+                </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" class="section section--contact">
+          <div class="container">
+            <div class="section__eyebrow">Contact</div>
+            <h2 class="section__title">Inquiries</h2>
+            <p class="section__lead">
+              For project inquiries, research collaboration, or secure tooling work, reach out directly.
+            </p>
+
+            <div class="contactBox">
+              <div class="contactBox__col">
+                <div class="contactBox__label">Email</div>
+                <div class="contactBox__value">
+                  <a href="mailto:inquire@titansoftwork.com">inquire@titansoftwork.com</a>
+                </div>
+              </div>
+              <div class="contactBox__col">
+                <div class="contactBox__label">GitHub</div>
+                <div class="contactBox__value">
+                  <a href="https://github.com/TITAN-Softwork-Solutions" target="_blank" rel="noreferrer">TITAN Softwork Solutions</a>
+                </div>
+              </div>
+              <div class="contactBox__col contactBox__col--cta">
+                <a class="cta cta--primary" href="mailto:inquire@titansoftwork.com">Start inquiry</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer" role="contentinfo">
+        <div class="footer__inner">
+          <div class="footer__left">© <span id="year"></span> TITAN Softwork Solutions</div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+    <script>
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      window.addEventListener("load", () => {
+        window.scrollTo(0, 0);
+      });
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

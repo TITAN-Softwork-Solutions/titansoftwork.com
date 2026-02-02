@@ -1,0 +1,27 @@
+:root {
+  --bg: #050506;
+  --bg2: #0a0d12;
+  --fg: #f5f2ea;
+  --fgDark: #0e1217;
+  --muted: rgba(245, 242, 234, 0.68);
+  --mutedDark: rgba(14, 18, 23, 0.70);
+  --hair: rgba(245, 242, 234, 0.16);
+  --hair2: rgba(245, 242, 234, 0.10);
+  --shadow: rgba(0, 0, 0, 0.55);
+
+  --hud: rgba(245, 245, 245, 0.92);
+  --hudDim: rgba(245, 245, 245, 0.62);
+  --hudGlow: rgba(245, 245, 245, 0.12);
+
+  --accentRGB: 242, 196, 124;
+  --accent2RGB: 128, 203, 196;
+  --accent: rgb(var(--accentRGB));
+  --accentSoft: rgba(var(--accentRGB), 0.18);
+  --accentGlow: rgba(var(--accentRGB), 0.10);
+
+  --font-sans: "Space Grotesk", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Sora", "Space Grotesk", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", monospace;
+
+  --headerH: 76px;
+}

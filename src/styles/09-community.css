@@ -1,0 +1,86 @@
+
+
+.communityWidget {
+  width: 100%;
+}
+
+.communityWidget__frame {
+  display: block;
+  text-decoration: none;
+  color: #ffffff;
+
+  background: linear-gradient(180deg, rgba(10, 12, 16, 0.92), rgba(6, 7, 9, 0.96));
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 14px;
+
+  padding: 22px 24px;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.communityWidget__frame:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: linear-gradient(180deg, rgba(12, 14, 18, 0.96), rgba(6, 7, 9, 1));
+  transform: translateY(-1px);
+}
+
+.communityWidget__title {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin-bottom: 14px;
+}
+
+
+.communityWidget__stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+
+
+.communityWidget__stat {
+  flex: 1;
+  text-align: center;
+}
+
+.communityWidget__num {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.communityWidget__numValue {
+  font-size: 2.1rem;
+  font-weight: 600;
+}
+
+.communityWidget__numLabel {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+
+.communityWidget__divider {
+  width: 1px;
+  align-self: stretch;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+}
+
+
+.communityWidget__note {
+  margin-top: 14px;
+  font-size: 0.7rem;
+  opacity: 0.55;
+  text-align: center;
+}

@@ -12,6 +12,7 @@ body {
     var(--bg);
   color: var(--fg);
   font-family: var(--font-sans);
+  overflow-x: hidden;
 }
 
 #app { min-height: 100%; }

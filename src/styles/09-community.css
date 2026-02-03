@@ -84,3 +84,19 @@
   opacity: 0.55;
   text-align: center;
 }
+
+@media (max-width: 600px) {
+  .communityWidget__stats {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .communityWidget__divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .communityWidget__numValue {
+    font-size: 1.8rem;
+  }
+}

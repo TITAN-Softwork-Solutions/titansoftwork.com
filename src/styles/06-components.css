@@ -350,3 +350,38 @@
   .contactBox__col--cta { justify-content: flex-start; }
   .projectBar { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 720px) {
+  .cta {
+    height: 40px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+  }
+
+  .pillar,
+  .project,
+  .founderCard,
+  .communityCard {
+    padding: 16px;
+  }
+
+  .projectBar {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .projectBar__label {
+    font-size: 11px;
+  }
+
+  .projectBar__value,
+  .projectBar__value a,
+  .contactBox__value,
+  .contactBox__value a {
+    overflow-wrap: anywhere;
+  }
+
+  .contactBox {
+    padding: 16px;
+  }
+}

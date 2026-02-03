@@ -25,3 +25,15 @@
 
   --headerH: 76px;
 }
+
+@media (max-width: 720px) {
+  :root {
+    --headerH: 64px;
+  }
+}
+
+@media (max-width: 520px) {
+  :root {
+    --headerH: 58px;
+  }
+}

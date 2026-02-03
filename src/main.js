@@ -130,6 +130,8 @@ async function main() {
 
   const heroEl = document.querySelector(".hero");
   const stageEl = document.getElementById("stage");
+  const compactQuery = window.matchMedia("(max-width: 900px), (pointer: coarse)");
+  const isCompactUI = () => compactQuery.matches;
 
   const breaches = await loadBreaches();
 
@@ -162,11 +164,11 @@ async function main() {
   }
 
   function setGlobeForeground(on) {
-    globeForeground = !!on;
+    globeForeground = !!(on && !isCompactUI());
 
     heroEl?.classList.toggle("hero--focus", globeForeground);
     heroEl?.classList.toggle("hero--bg", !globeForeground);
-    document.body.classList.toggle("globe-foreground", !!on);
+    document.body.classList.toggle("globe-foreground", globeForeground);
 
     orbit.controls.enabled = globeForeground;
 
@@ -181,6 +183,16 @@ async function main() {
     heroEl.classList.remove("hero--focus");
   }
   setGlobeForeground(false);
+
+  function syncCompactState() {
+    if (isCompactUI()) setGlobeForeground(false);
+  }
+
+  if (compactQuery.addEventListener) {
+    compactQuery.addEventListener("change", syncCompactState);
+  } else {
+    compactQuery.addListener(syncCompactState);
+  }
 
   function allowPageWheel(e) {
     if (globeForeground) return;
@@ -217,6 +229,7 @@ async function main() {
   stageEl.addEventListener(
     "pointerdown",
     (e) => {
+      if (isCompactUI()) return;
       if (e.target?.closest?.(".atlas-card")) return;
 
       if (!globeForeground) {
@@ -238,6 +251,7 @@ async function main() {
   const cardLayer = createCardLayer({
     hud,
     onSelect: ({ id }) => {
+      if (isCompactUI()) return;
       if (!globeForeground) return;
 
       if (interactionState.focusActive && interactionState.focusId === id) {
@@ -285,6 +299,7 @@ async function main() {
   });
 
   stageEl.addEventListener("pointerdown", (e) => {
+    if (isCompactUI()) return;
     if (e.target?.closest?.(".atlas-card")) return;
     if (!globeForeground) return;
     if (interactionState.focusActive) {

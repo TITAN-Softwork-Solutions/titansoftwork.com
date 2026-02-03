@@ -98,3 +98,39 @@
   .grid--3 { grid-template-columns: 1fr; }
   .split { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 720px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .section {
+    padding: 72px 0;
+  }
+
+  .section__eyebrow {
+    font-size: 11px;
+  }
+
+  .section__title {
+    font-size: 24px;
+  }
+
+  .section__lead {
+    font-size: 14px;
+  }
+
+  .grid {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  .section {
+    padding: 56px 0;
+  }
+
+  .section__title {
+    font-size: 22px;
+  }
+}

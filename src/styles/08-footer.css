@@ -16,3 +16,14 @@
   gap: 18px;
   flex-wrap: wrap;
 }
+
+@media (max-width: 520px) {
+  .footer {
+    padding: 14px 16px;
+    font-size: 11px;
+  }
+
+  .footer__inner {
+    justify-content: center;
+  }
+}

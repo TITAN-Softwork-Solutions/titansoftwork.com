@@ -7,7 +7,7 @@
   height: 36px;
   padding: 0 12px;
 
-  border-radius: 10px;
+  border-radius: 0;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 700;
@@ -42,20 +42,25 @@
 }
 
 .cta--dark {
-  background: linear-gradient(135deg, rgba(var(--accentRGB), 0.95), rgba(var(--accent2RGB), 0.70));
-  color: #1a1410;
-  border: 1px solid rgba(var(--accentRGB), 0.75);
+  background: #0e1217;
+  color: rgba(245,245,245,0.96);
+  border: 1px solid rgba(245,245,245,0.14);
   box-shadow: 0 12px 40px rgba(0,0,0,0.18);
 }
 
+.section--light a.cta--dark {
+  /* Override `.section--light a { color: inherit; }` so dark CTAs stay readable. */
+  color: rgba(245,245,245,0.96);
+}
+
 .cta--dark:hover {
-  background: linear-gradient(135deg, rgba(var(--accentRGB), 1), rgba(var(--accent2RGB), 0.82));
+  background: #000000;
 }
 
 .pillar {
   border: 1px solid rgba(245,245,245,0.14);
   background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
-  border-radius: 18px;
+  border-radius: 0;
   padding: 18px;
   box-shadow: 0 20px 70px rgba(0,0,0,0.45);
 }
@@ -88,7 +93,7 @@
 
 .pillar__tags span {
   padding: 6px 8px;
-  border-radius: 999px;
+  border-radius: 0;
   border: 1px solid rgba(245,245,245,0.16);
   background: rgba(0,0,0,0.22);
 }
@@ -100,7 +105,7 @@
   gap: 14px;
   align-items: center;
   padding: 16px 18px;
-  border-radius: 16px;
+  border-radius: 0;
   border: 1px solid rgba(14, 18, 23, 0.12);
   background: rgba(255,255,255,0.75);
   box-shadow: 0 18px 60px rgba(14, 18, 23, 0.08);
@@ -125,18 +130,64 @@
 }
 
 .project {
+  --cardLine: rgba(245,245,245,0.92);
   border: 1px solid rgba(245,245,245,0.14);
   background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-  border-radius: 20px;
+  border-radius: 0;
   padding: 18px;
   box-shadow: 0 22px 80px rgba(0,0,0,0.50);
   color: var(--fg);
   display: flex;
   flex-direction: column;
   gap: 10px;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.project--link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  position: relative;
+}
+
+.project--link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  clip-path: inset(0 100% 100% 0);
+  transition: clip-path 220ms ease, opacity 180ms ease;
+  will-change: clip-path;
+  border: 2px solid var(--cardLine);
+}
+
+/* Single-corner border reveal (top-left), expanding to the full card. */
+.project--link:hover::after,
+.project--link:focus-visible::after {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+}
+
+.project--link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(245,245,245,0.28);
+}
+
+.project--link:focus-visible {
+  outline: none;
+}
+
+.section--light .project--link:hover {
+  border-color: rgba(14, 18, 23, 0.30);
+}
+
+.section--light .project--link:focus-visible {
+  outline-color: rgba(14, 18, 23, 0.88);
 }
 
 .section--light .project {
+  --cardLine: rgba(14, 18, 23, 0.88);
   border-color: rgba(14, 18, 23, 0.12);
   background: #ffffff;
   box-shadow: 0 16px 60px rgba(14, 18, 23, 0.10);
@@ -144,9 +195,11 @@
 }
 
 .project--featured {
-  border-color: rgba(var(--accentRGB), 0.35);
-  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(0,0,0,0.10));
+  border-color: rgba(245,245,245,0.24);
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.58));
   box-shadow: 0 28px 90px rgba(0,0,0,0.62);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .project--featured .project__meta {
@@ -207,15 +260,21 @@
 }
 
 .project__links a:hover {
-  border-bottom-color: rgba(var(--accentRGB), 0.75);
+  border-bottom-color: rgba(245,245,245,0.85);
+}
+
+.section--light .project__links a:hover {
+  border-bottom-color: rgba(14, 18, 23, 0.85);
 }
 
 .founderCard {
   border: 1px solid rgba(245,245,245,0.12);
-  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.58));
+  border-radius: 0;
   padding: 20px;
   box-shadow: 0 24px 80px rgba(0,0,0,0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -250,7 +309,7 @@
 .communityCard {
   border: 1px solid rgba(14, 18, 23, 0.16);
   background: #ffffff;
-  border-radius: 18px;
+  border-radius: 0;
   padding: 20px;
   box-shadow: 0 18px 60px rgba(14, 18, 23, 0.10);
   display: flex;
@@ -281,7 +340,7 @@
 }
 
 .communityWidget {
-  border-radius: 18px;
+  border-radius: 0;
   border: 1px solid rgba(14, 18, 23, 0.16);
   background: #ffffff;
   box-shadow: 0 18px 60px rgba(14, 18, 23, 0.10);
@@ -296,7 +355,7 @@
   width: 100%;
   min-height: 320px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 0;
   background: #0c1016;
 }
 
@@ -308,9 +367,11 @@
 .contactBox {
   margin-top: 18px;
   border: 1px solid rgba(245,245,245,0.12);
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.58));
+  border-radius: 0;
   padding: 18px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 
   display: grid;
   grid-template-columns: 1fr 1fr auto;

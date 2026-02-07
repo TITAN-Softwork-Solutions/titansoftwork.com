@@ -1,0 +1,116 @@
+.markdown-body {
+  color: rgba(245,245,245,0.78);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin: 24px 0 12px;
+  font-family: var(--font-display);
+  color: rgba(245,245,245,0.96);
+}
+
+.markdown-body h1 { font-size: 28px; }
+.markdown-body h2 { font-size: 24px; }
+.markdown-body h3 { font-size: 20px; }
+.markdown-body h4 { font-size: 18px; }
+
+.markdown-body p {
+  margin: 0 0 16px;
+}
+
+.markdown-body a {
+  text-decoration: none;
+  color: rgba(var(--accentRGB), 0.95);
+  border-bottom: 1px solid rgba(var(--accentRGB), 0.35);
+}
+
+.markdown-body a:hover {
+  border-bottom-color: rgba(var(--accentRGB), 0.75);
+}
+
+.markdown-body blockquote {
+  margin: 18px 0;
+  padding: 14px 18px;
+  border-left: 3px solid rgba(var(--accentRGB), 0.6);
+  background: rgba(255,255,255,0.05);
+  color: rgba(245,245,245,0.72);
+}
+
+.markdown-body code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: rgba(255,255,255,0.08);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.markdown-body pre {
+  background: rgba(6, 8, 12, 0.9);
+  border: 1px solid rgba(245,245,245,0.14);
+  border-radius: 12px;
+  padding: 16px;
+  overflow: auto;
+}
+
+.markdown-body pre code {
+  padding: 0;
+  background: transparent;
+  font-size: 13px;
+  color: rgba(245,245,245,0.9);
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  margin: 0 0 16px 18px;
+  padding: 0;
+}
+
+.markdown-body li {
+  margin-bottom: 6px;
+}
+
+.markdown-body hr {
+  border: 0;
+  border-top: 1px solid rgba(245,245,245,0.12);
+  margin: 26px 0;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(245,245,245,0.12);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+}
+
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid rgba(245,245,245,0.12);
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.markdown-body th {
+  background: rgba(255,255,255,0.08);
+}
+
+@media (max-width: 720px) {
+  .markdown-body {
+    font-size: 14px;
+  }
+
+  .markdown-body h1 { font-size: 24px; }
+  .markdown-body h2 { font-size: 21px; }
+  .markdown-body h3 { font-size: 18px; }
+}

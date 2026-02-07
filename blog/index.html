@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TITAN Softwork Solutions | Blog</title>
+    <meta
+      name="description"
+      content="Field notes, release updates, and security engineering research from TITAN Softwork Solutions."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#000000" />
+
+    <meta property="og:site_name" content="TITAN Softwork Solutions" />
+    <meta property="og:title" content="TITAN Softwork Solutions | Blog" />
+    <meta
+      property="og:description"
+      content="Field notes, release updates, and security engineering research from TITAN Softwork Solutions."
+    />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TITAN Softwork Solutions | Blog" />
+    <meta
+      name="twitter:description"
+      content="Field notes, release updates, and security engineering research from TITAN Softwork Solutions."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app" class="blog-app">
+      <header class="site-header" role="banner">
+        <div class="site-header__inner">
+          <a class="site-brand" href="/#home" aria-label="TITAN Softwork Solutions Home">
+            <span class="site-brand__text">
+              <span class="site-brand__name">TITAN</span>
+              <span class="site-brand__sub">SOFTWORK SOLUTIONS</span>
+            </span>
+          </a>
+
+          <nav class="site-nav" aria-label="Primary">
+            <div class="site-nav__item">
+              <a class="site-nav__link" href="/#home">Home</a>
+            </div>
+            <div class="site-nav__item">
+              <a class="site-nav__link" href="/#projects">Projects</a>
+            </div>
+            <div class="site-nav__item">
+              <a class="site-nav__link" href="/#community">Community</a>
+            </div>
+            <div class="site-nav__item">
+              <a class="site-nav__link" href="/#contact">Contact</a>
+            </div>
+            <div class="site-nav__item">
+              <a class="site-nav__link site-nav__link--active" href="/blog/" aria-current="page">Blog</a>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <main class="page blog-page" role="main">
+        <section class="section blog-hero" aria-label="Blog overview">
+          <div class="container">
+            <div class="section__eyebrow">Blog</div>
+            <h1 class="section__title">TITAN Research</h1>
+            <p class="section__lead">
+              Research notes, release updates, and operational insights from TITAN Softwork Solutions.
+            </p>
+          </div>
+        </section>
+
+        <section class="section blog-feed" aria-label="Blogposts">
+          <div class="container">
+            <div id="blog-status" class="blog-status">Loading blogposts...</div>
+
+            <div class="blog-view" data-blog-view="list">
+              <div id="blog-grid" class="blog-grid" aria-live="polite"></div>
+              <div id="blog-pagination" class="blog-pagination" aria-label="Blog pagination"></div>
+            </div>
+
+            <div class="blog-view" data-blog-view="post" hidden>
+              <div class="blog-post__header">
+                <div class="blog-post__meta" id="blog-post-meta"></div>
+                <h2 class="blog-post__title" id="blog-post-title"></h2>
+              </div>
+              <div class="blog-post__body markdown-body" id="blog-post-body"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+    </div>
+
+    <script type="module" src="/src/blog.js"></script>
+  </body>
+</html>

@@ -32,36 +32,39 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/assets/index-5CoO3aDs.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BOoG-dRO.css">
+    <script type="module" crossorigin src="/assets/main-CwZojhDo.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/style-7r9uE6jm.js">
+    <link rel="stylesheet" crossorigin href="/assets/style-MtRvTKaS.css">
   </head>
   <body>
     <div id="app">
       <header class="site-header" role="banner">
         <div class="site-header__inner">
           <a class="site-brand" href="#home" aria-label="TITAN Softwork Solutions Home">
-            <span class="site-brand__mark" aria-hidden="true"></span>
             <span class="site-brand__text">
               <span class="site-brand__name">TITAN</span>
-              <span class="site-brand__sub">Softwork Solutions</span>
+              <span class="site-brand__sub">SOFTWORK SOLUTIONS</span>
             </span>
           </a>
 
           <nav class="site-nav" aria-label="Primary">
             <div class="site-nav__item" data-menu="projects">
               <a class="site-nav__link" href="#projects">
-                Projects <span class="site-nav__arrow" aria-hidden="true">&gt;</span>
+                Projects
               </a>
               <div class="site-nav__dropdown" role="menu">
                 <a data-repo="CCGT-Packer" href="https://github.com/TITAN-Softwork-Solutions/CCGT-Packer" target="_blank" rel="noreferrer">CCGT-Packer</a>
                 <a data-repo="Regera" href="https://github.com/TITAN-Softwork-Solutions/Regera" target="_blank" rel="noreferrer">Regera</a>
                 <a data-repo="Vigil" href="https://github.com/TITAN-Softwork-Solutions/Vigil" target="_blank" rel="noreferrer">Vigil</a>
+                <a data-repo="Vesuki" href="https://github.com/TITAN-Softwork-Solutions/Vesuki-Polymorphic-Control-Flow-Obfuscator" target="_blank" rel="noreferrer">Vesuki</a>
+                <a data-repo="ActiveBreach-Engine" href="https://github.com/dutchpsycho/ActiveBreach-Engine" target="_blank" rel="noreferrer">ActiveBreach Engine</a>
+                <a data-repo="KFD" href="https://github.com/dutchpsycho/KFD" target="_blank" rel="noreferrer">KFD</a>
               </div>
             </div>
 
             <div class="site-nav__item" data-menu="community">
               <a class="site-nav__link" href="#community">
-                Community <span class="site-nav__arrow" aria-hidden="true">&gt;</span>
+                Community
               </a>
               <div class="site-nav__dropdown" role="menu">
                 <a href="https://hub.titansoftwork.com" target="_blank" rel="noreferrer">Discord</a>
@@ -70,16 +73,20 @@
 
             <div class="site-nav__item" data-menu="github">
               <a class="site-nav__link" href="https://github.com/TITAN-Softwork-Solutions" target="_blank" rel="noreferrer">
-                GitHub <span class="site-nav__arrow" aria-hidden="true">&gt;</span>
+                GitHub
               </a>
               <div class="site-nav__dropdown" role="menu">
                 <a href="https://github.com/TITAN-Softwork-Solutions" target="_blank" rel="noreferrer">Organization</a>
               </div>
             </div>
 
+            <div class="site-nav__item">
+              <a class="site-nav__link" href="/blog/">Blog</a>
+            </div>
+
             <div class="site-nav__item" data-menu="contact">
               <a class="site-nav__link" href="#contact">
-                Contact <span class="site-nav__arrow" aria-hidden="true">&gt;</span>
+                Contact
               </a>
               <div class="site-nav__dropdown" role="menu">
                 <a href="#contact">Inquiries</a>
@@ -99,7 +106,7 @@
           <div class="hero__overlay" aria-hidden="true"></div>
 
           <div class="hero__copy">
-            <h1 class="hero__headline">TITAN Softworks</h1>
+            <h1 class="hero__headline">TITAN SOFTWORKS</h1>
             <p class="hero__sub">Built to break systems. Built to harden them.</p>
 
             <div class="hero__ctaRow">
@@ -110,63 +117,85 @@
           </div>
         </section>
 
-        <section id="program" class="section section--program">
+        <section id="program" class="section section--program section--center">
           <div class="container">
-            <div class="section__eyebrow">Program focus</div>
-            <h2 class="section__title">Advanced security engineering, end-to-end.</h2>
-            <p class="section__lead">
-              TITAN Softwork Solutions develops offensive and defensive systems as a single engineering program: research,
-              prototyping, and hardening built to withstand real-world analysis.
-            </p>
+            <div class="sectionHead sectionHead--program stagger">
+              <div class="section__eyebrow">PROGRAM FOCUS</div>
+              <h2 class="section__title">ADVANCED SECURITY ENGINEERING, END-TO-END.</h2>
+              <p class="section__lead">
+Hand-crafted security tooling built end-to-end through intensive iteration and continuous refinement. Each component is purpose-designed for its role, tuned for precision, and engineered for high performance.
+              </p>
+              <div class="program-industrial__meta" aria-label="Program focus highlights">
+                <span>HAND-WRITTEN R&amp;D</span>
+                <span>ITERATIVE REFINEMENT</span>
+                <span>MODERN TECHNIQUES</span>
+              </div>
+            </div>
 
-            <div class="grid grid--3 stagger">
-              <article class="pillar">
-                <h3 class="pillar__title">Offensive research tooling</h3>
-                <p class="pillar__text">
-                  Deep Windows x64 instrumentation, syscall research, evasion analysis, and bespoke tooling that prioritizes
-                  stealth and control.
-                </p>
-                <div class="pillar__tags">
-                  <span>Syscalls</span>
-                  <span>Reverse engineering</span>
-                  <span>R&amp;D</span>
+            <div class="program-industrial__grid grid grid--3 stagger" aria-label="Program focus modules">
+              <article class="program-module program-module--primary">
+                <div class="program-module__rail">
+                  <span class="program-module__index">01</span>
+                  <span class="program-module__tag">OFFENSE</span>
+                </div>
+                <div class="program-module__body">
+                  <h3 class="program-module__title">Offensive research tooling</h3>
+                  <p class="program-module__text">
+Hand-written offensive tooling built through tight iteration and refinement. Focused on controlled execution paths, telemetry mapping, and AV/EDR-aware operation for real constraints.
+                  </p>
+                  <div class="program-module__chips">
+                    <span>KERNEL AWARE</span>
+                    <span>HOOKING-RESILIENT</span>
+                    <span>EDR/AV RESEARCH</span>
+                  </div>
                 </div>
               </article>
 
-              <article class="pillar">
-                <h3 class="pillar__title">Resilient defensive systems</h3>
-                <p class="pillar__text">
-                  Detection engineering, telemetry pipelines, and system hardening engineered for durability under active adversaries.
-                </p>
-                <div class="pillar__tags">
-                  <span>Telemetry pipelines</span>
-                  <span>Resilience testing</span>
-                  <span>Control validation</span>
+              <article class="program-module">
+                <div class="program-module__rail">
+                  <span class="program-module__index">02</span>
+                  <span class="program-module__tag">DEFENSE</span>
+                </div>
+                <div class="program-module__body">
+                  <h3 class="program-module__title">Resilient defensive systems</h3>
+                  <p class="program-module__text">
+High-signal detection engineering for fast attribution and decisive response. Behavior analytics, heuristics, and scoring built to hold up in hostile or noisy environments.
+                  </p>
+                  <div class="program-module__chips">
+                    <span>THREAT HEURISTICS</span>
+                    <span>RULESETS + TRIAGE</span>
+                    <span>NEUTRALIZATION</span>
+                  </div>
                 </div>
               </article>
 
-              <article class="pillar">
-                <h3 class="pillar__title">Blue + Red tooling</h3>
-                <p class="pillar__text">
-                  A unified pipeline where offensive techniques inform defensive controls, producing tools that are research-grade
-                  and operationally relevant.
-                </p>
-                <div class="pillar__tags">
-                  <span>Blue + Red</span>
-                  <span>Systems research</span>
-                  <span>Prototype to product</span>
+              <article class="program-module">
+                <div class="program-module__rail">
+                  <span class="program-module__index">03</span>
+                  <span class="program-module__tag">FUSION</span>
+                </div>
+                <div class="program-module__body">
+                  <h3 class="program-module__title">Blue + Red tooling</h3>
+                  <p class="program-module__text">
+A unified pipeline where offensive research shapes defensive controls. Techniques are validated end-to-end and translated into operational, deployment-ready capability.
+                  </p>
+                  <div class="program-module__chips">
+                    <span>RED/BLUE FEEDBACK</span>
+                    <span>CAPABILITY ENGINEERING</span>
+                    <span>RESEARCH TO DEPLOYMENT</span>
+                  </div>
                 </div>
               </article>
             </div>
           </div>
         </section>
 
-        <section id="projects" class="section section--projects section--light">
+        <section id="projects" class="section section--projects section--light section--center">
           <div class="container">
-            <div class="section__eyebrow">Open research</div>
-            <h2 class="section__title">Featured TITAN projects</h2>
+            <div class="section__eyebrow">OPEN RESEARCH</div>
+            <h2 class="section__title">FEATURED TITAN PROJECTS</h2>
             <p class="section__lead">
-              Research tooling and defensive systems from the TITAN Softwork Solutions GitHub organization.
+              Research tooling and defensive systems from the TITAN ecosystem: organization repositories and founder-led R&amp;D.
             </p>
 
             <div class="projectBar">
@@ -180,107 +209,77 @@
             </div>
 
             <div class="grid grid--3 stagger">
-              <article class="project">
+              <a class="project project--link" href="https://github.com/TITAN-Softwork-Solutions/CCGT-Packer" target="_blank" rel="noreferrer" aria-label="Open repository: CCGT-Packer">
                 <div class="project__top">
                   <div class="project__name">CCGT-Packer</div>
                   <div class="project__meta">Post-build string encryption packing tool</div>
                 </div>
                 <p class="project__text">
-                  CCGT is a post-build string protection tool for Windows x64 binaries. It scans a compiled executable for eligible
-                  strings, encrypts them, and writes a compact metadata table into a dedicated PE section (.ccgtr). At runtime,
-                  a lightweight header-only runtime (ccgt_runtime.h) decrypts protected regions before the program uses them.
+                  Post-build string protection for Windows; encrypts eligible literals, stores metadata in a PE section, and
+                  decrypts on-demand at runtime to reduce static string exposure.
                 </p>
-                <p class="project__text">
-                  This approach reduces exposure of sensitive strings in static analysis workflows (strings.exe, YARA, bulk IOC
-                  extraction, and casual reverse engineering).
-                </p>
-                <div class="project__links">
-                  <a href="https://github.com/TITAN-Softwork-Solutions/CCGT-Packer" target="_blank" rel="noreferrer">Repository</a>
-                </div>
-              </article>
+              </a>
 
-              <article class="project">
+              <a class="project project--link" href="https://github.com/TITAN-Softwork-Solutions/Regera" target="_blank" rel="noreferrer" aria-label="Open repository: Regera">
                 <div class="project__top">
                   <div class="project__name">Regera</div>
                   <div class="project__meta">High-entropy compile-time string encryption for Rust</div>
                 </div>
                 <p class="project__text">
-                  Regera delivers compile-time string encryption for Rust, backed by AEAD, ChaCha20, and handrolled mutation engines.
-                  It turns literals into encrypted blobs at build time and injects tiny decrypt shims at runtime.
+                  Compile-time string encryption for Rust via proc macros with multiple engines, generating encrypted blobs at build
+                  time and compact runtime decrypt shims.
                 </p>
-                <p class="project__text">
-                  Single-value macros return a zeroizing SecretStr, while multi-value macros return owned Strings for ergonomic
-                  destructuring.
-                </p>
-                <div class="project__links">
-                  <a href="https://github.com/TITAN-Softwork-Solutions/Regera" target="_blank" rel="noreferrer">Repository</a>
-                </div>
-              </article>
+              </a>
 
-              <article class="project">
+              <a class="project project--link" href="https://github.com/TITAN-Softwork-Solutions/Vigil" target="_blank" rel="noreferrer" aria-label="Open repository: Vigil">
                 <div class="project__top">
                   <div class="project__name">Vigil</div>
                   <div class="project__meta">Blue-team ETW telemetry for sensitive file access</div>
                 </div>
                 <p class="project__text">
-                  Vigil is a lightweight Windows blue-team telemetry utility that detects untrusted processes accessing protected
-                  filesystem resources using kernel ETW.
+                  Lightweight Windows ETW telemetry for detecting untrusted processes accessing protected filesystem resources.
                 </p>
-                <div class="project__links">
-                  <a href="https://github.com/TITAN-Softwork-Solutions/Vigil" target="_blank" rel="noreferrer">Repository</a>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
+              </a>
 
-        <section id="founder" class="section section--founder">
-          <div class="container">
-            <div class="section__eyebrow">Leadership</div>
-            <h2 class="section__title">Owner and founder</h2>
-            <p class="section__lead">
-              TITAN is founded and led by
-              <a href="https://github.com/dutchpsycho" target="_blank" rel="noreferrer">dutchpsycho</a>.
-            </p>
-
-            <div class="split stagger">
-              <article class="founderCard">
-                <div class="founderCard__label">Founder</div>
-                <h3 class="founderCard__name">dutchpsycho</h3>
-                <p class="founderCard__text">
-                  Owner and lead engineer for TITAN Softwork Solutions. Research spans offensive engineering, system hardening,
-                  and the design of blue-team and red-team tooling that informs defensive controls.
-                </p>
-                <div class="founderCard__links">
-                  <a class="cta cta--ghost" href="https://github.com/dutchpsycho" target="_blank" rel="noreferrer">GitHub profile</a>
-                </div>
-              </article>
-
-              <article class="project project--featured">
+              <a class="project project--link" href="https://github.com/dutchpsycho/ActiveBreach-Engine" target="_blank" rel="noreferrer" aria-label="Open repository: ActiveBreach Engine">
                 <div class="project__top">
                   <div class="project__name">ActiveBreach Engine</div>
-                  <div class="project__meta">SysWhispers and HellsGate successor - direct syscall execution framework</div>
+                  <div class="project__meta">SysWhispers &amp; HellsGate successor, DSE direct syscall execution framework</div>
                 </div>
                 <p class="project__text">
-                  ActiveBreach is a fully dynamic direct syscall framework for Windows 10/11 x64, designed as a modern successor
-                  to tools like SysWhispers and Hell's Gate. Inspired by MDSEC research on bypassing user-mode hooks, it targets
-                  key detection vectors such as static syscall patterns, suspicious call stacks, and hooked API usage.
+                  Dynamic direct-syscall framework for Windows, built as a modern SysWhispers/Hell's Gate successor for
+                  AV/EDR research and hooking-aware execution.
                 </p>
-                <p class="project__text">
-                  The Rust implementation features JIT memory encryption, a stringless design, and rotating encrypted stubs.
-                </p>
-                <div class="project__links">
-                  <a href="https://github.com/dutchpsycho/ActiveBreach-Engine" target="_blank" rel="noreferrer">Repository</a>
+              </a>
+
+              <a class="project project--link" href="https://github.com/dutchpsycho/KFD" target="_blank" rel="noreferrer" aria-label="Open repository: KFD">
+                <div class="project__top">
+                  <div class="project__name">KFD</div>
+                  <div class="project__meta">Framework for performing indirect syscalls</div>
                 </div>
-              </article>
+                <p class="project__text">
+                  Indirect syscall execution framework tuned for heavily monitored EDR/AV environments and research-grade constraints.
+                </p>
+              </a>
+
+              <a class="project project--link" href="https://github.com/TITAN-Softwork-Solutions/Vesuki-Polymorphic-Control-Flow-Obfuscator" target="_blank" rel="noreferrer" aria-label="Open repository: Vesuki">
+                <div class="project__top">
+                  <div class="project__name">Vesuki</div>
+                  <div class="project__meta">Defensive Rust control-flow obfuscation and anti-analysis tooling</div>
+                </div>
+                <p class="project__text">
+                  Rust control-flow hardening and obfuscation: proc-macro transforms functions into
+                  dispatcher-style execution with randomized noise to raise the cost of static analysis and reversing.
+                </p>
+              </a>
             </div>
           </div>
         </section>
 
-        <section id="community" class="section section--community section--light">
+        <section id="community" class="section section--community section--center">
           <div class="container">
-            <div class="section__eyebrow">Community</div>
-            <h2 class="section__title">Discord updates and collaboration</h2>
+            <div class="section__eyebrow">COMMUNITY</div>
+            <h2 class="section__title">DISCORD UPDATES AND COLLABORATION</h2>
             <p class="section__lead">
               Follow releases, research notes, project updates, and ask questions or get help through the TITAN community hub.
             </p>
@@ -336,10 +335,10 @@
           </div>
         </section>
 
-        <section id="contact" class="section section--contact">
+        <section id="contact" class="section section--contact section--center">
           <div class="container">
-            <div class="section__eyebrow">Contact</div>
-            <h2 class="section__title">Inquiries</h2>
+            <div class="section__eyebrow">CONTACT</div>
+            <h2 class="section__title">INQUIRIES</h2>
             <p class="section__lead">
               For project inquiries, research collaboration, or secure tooling work, reach out directly.
             </p>

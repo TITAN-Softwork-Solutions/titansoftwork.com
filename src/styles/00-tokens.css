@@ -13,8 +13,9 @@
   --hudDim: rgba(245, 245, 245, 0.62);
   --hudGlow: rgba(245, 245, 245, 0.12);
 
-  --accentRGB: 242, 196, 124;
-  --accent2RGB: 128, 203, 196;
+  /* Monochrome accents (no gold) */
+  --accentRGB: 200, 200, 200;
+  --accent2RGB: 110, 110, 110;
   --accent: rgb(var(--accentRGB));
   --accentSoft: rgba(var(--accentRGB), 0.18);
   --accentGlow: rgba(var(--accentRGB), 0.10);

@@ -11,7 +11,7 @@
 
   background: linear-gradient(180deg, rgba(10, 12, 16, 0.92), rgba(6, 7, 9, 0.96));
   border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 14px;
+  border-radius: 0;
 
   padding: 22px 24px;
 
@@ -43,8 +43,6 @@
   gap: 18px;
 }
 
-
-
 .communityWidget__stat {
   flex: 1;
   text-align: center;
@@ -60,7 +58,19 @@
 
 .communityWidget__numValue {
   font-size: 2.1rem;
-  font-weight: 600;
+  font-weight: 750;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  color: rgba(245, 245, 245, 0.96);
+}
+
+.communityWidget__numValue::before {
+  content: "▲";
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 0.95rem;
+  transform: translateY(-2px);
+  color: rgba(80, 255, 168, 0.92);
 }
 
 .communityWidget__numLabel {

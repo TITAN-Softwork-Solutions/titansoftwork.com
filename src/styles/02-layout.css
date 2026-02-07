@@ -24,10 +24,10 @@
 
 .section__title {
   margin: 0;
-  font-size: 28px;
-  letter-spacing: 0.01em;
+  font-size: clamp(30px, 3.6vw, 52px);
+  letter-spacing: 0.04em;
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 900;
 }
 
 .section__lead {
@@ -113,7 +113,7 @@
   }
 
   .section__title {
-    font-size: 24px;
+    font-size: clamp(26px, 7vw, 36px);
   }
 
   .section__lead {
@@ -131,6 +131,6 @@
   }
 
   .section__title {
-    font-size: 22px;
+    font-size: clamp(24px, 8vw, 32px);
   }
 }

@@ -13,12 +13,37 @@
   font-weight: 700;
   font-size: 11px;
   font-family: var(--font-display);
+  position: relative;
+  overflow: hidden;
 }
 
 .cta--primary {
   background: var(--fg);
   color: #0c0f13;
   border: 1px solid var(--fg);
+}
+
+.cta--primary:hover {
+  /* Prevent global `a:hover { color: var(--fg); }` from whitening out the label. */
+  color: #0c0f13;
+}
+
+.cta--primary::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  opacity: 0;
+  clip-path: inset(0 100% 100% 0);
+  transition: clip-path 220ms ease, opacity 180ms ease;
+  will-change: clip-path;
+  border: 2px solid rgba(14, 18, 23, 0.88);
+}
+
+.cta--primary:hover::after,
+.cta--primary:focus-visible::after {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
 }
 
 .cta--ghost {
@@ -46,6 +71,24 @@
   color: rgba(245,245,245,0.96);
   border: 1px solid rgba(245,245,245,0.14);
   box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+}
+
+.cta--dark::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  opacity: 0;
+  clip-path: inset(0 100% 100% 0);
+  transition: clip-path 220ms ease, opacity 180ms ease;
+  will-change: clip-path;
+  border: 2px solid rgba(245, 245, 245, 0.88);
+}
+
+.cta--dark:hover::after,
+.cta--dark:focus-visible::after {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
 }
 
 .section--light a.cta--dark {

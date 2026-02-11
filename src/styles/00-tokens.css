@@ -20,9 +20,9 @@
   --accentSoft: rgba(var(--accentRGB), 0.18);
   --accentGlow: rgba(var(--accentRGB), 0.10);
 
-  --font-sans: "Space Grotesk", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  --font-display: "Sora", "Space Grotesk", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", monospace;
+  --font-sans: "Public Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Chakra Petch", "Public Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Fira Code", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", monospace;
 
   --headerH: 76px;
 }

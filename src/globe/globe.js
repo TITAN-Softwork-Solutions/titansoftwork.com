@@ -3,14 +3,20 @@ import { createGrid } from "./grid.js";
 
 function setSRGB(tex) {
   if (!tex) return;
-  if ("colorSpace" in tex) tex.colorSpace = THREE.SRGBColorSpace;
-  else if ("encoding" in tex) tex.encoding = THREE.sRGBEncoding;
+  if ("colorSpace" in tex && THREE.SRGBColorSpace) {
+    tex.colorSpace = THREE.SRGBColorSpace;
+  } else if ("encoding" in tex && THREE.sRGBEncoding) {
+    tex.encoding = THREE.sRGBEncoding;
+  }
 }
 
 function setLinear(tex) {
   if (!tex) return;
-  if ("colorSpace" in tex) tex.colorSpace = THREE.NoColorSpace;
-  else if ("encoding" in tex) tex.encoding = THREE.LinearEncoding;
+  if ("colorSpace" in tex && THREE.NoColorSpace) {
+    tex.colorSpace = THREE.NoColorSpace;
+  } else if ("encoding" in tex && THREE.LinearEncoding) {
+    tex.encoding = THREE.LinearEncoding;
+  }
 }
 
 function tuneForSharpness(tex, { anisotropy = 16 } = {}) {

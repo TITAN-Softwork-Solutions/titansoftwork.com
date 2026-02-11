@@ -1,7 +1,23 @@
+/* 11-markdown.css */
 .markdown-body {
   color: rgba(245,245,245,0.78);
-  font-size: 15px;
-  line-height: 1.75;
+  font-size: 16.5px;
+  line-height: 1.9;
+  max-width: 100%;
+}
+
+body.is-blog-post .markdown-body {
+  font-size: 18px;
+  line-height: 1.95;
+}
+
+body.is-blog-post .markdown-body h1 { font-size: 32px; }
+body.is-blog-post .markdown-body h2 { font-size: 26px; }
+body.is-blog-post .markdown-body h3 { font-size: 22px; }
+body.is-blog-post .markdown-body h4 { font-size: 19px; }
+
+.markdown-body > * {
+  max-width: 100%;
 }
 
 .markdown-body h1,
@@ -13,6 +29,7 @@
   margin: 24px 0 12px;
   font-family: var(--font-display);
   color: rgba(245,245,245,0.96);
+  scroll-margin-top: calc(var(--headerH) + 28px);
 }
 
 .markdown-body h1 { font-size: 28px; }
@@ -21,7 +38,7 @@
 .markdown-body h4 { font-size: 18px; }
 
 .markdown-body p {
-  margin: 0 0 16px;
+  margin: 0 0 22px;
 }
 
 .markdown-body a {
@@ -34,6 +51,55 @@
   border-bottom-color: rgba(var(--accentRGB), 0.75);
 }
 
+.markdown-body .blog-dropdown {
+  margin: 16px 0;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.markdown-body .blog-dropdown__summary {
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-display);
+  color: rgba(245,245,245,0.95);
+  letter-spacing: 0.02em;
+  padding: 6px 18px 6px 0;
+  border-bottom: 1px solid transparent;
+  position: relative;
+}
+
+.markdown-body .blog-dropdown__summary::-webkit-details-marker {
+  display: none;
+}
+
+.markdown-body .blog-dropdown__summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(var(--accentRGB), 0.85);
+  font-family: var(--font-mono);
+}
+
+.markdown-body .blog-dropdown[open] .blog-dropdown__summary {
+  border-bottom-color: rgba(255,255,255,0.14);
+}
+
+.markdown-body .blog-dropdown[open] .blog-dropdown__summary::after {
+  content: "-";
+}
+
+.markdown-body .blog-dropdown__content {
+  padding: 6px 0 2px;
+}
+
+.markdown-body .blog-dropdown__content > :first-child {
+  margin-top: 0;
+}
+
 .markdown-body blockquote {
   margin: 18px 0;
   padding: 14px 18px;
@@ -44,25 +110,92 @@
 
 .markdown-body code {
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 0.95em;
+  font-style: normal;
+  font-weight: 500;
   background: rgba(255,255,255,0.08);
   padding: 2px 6px;
   border-radius: 6px;
 }
 
+.markdown-body em code,
+.markdown-body strong code {
+  font-style: normal;
+  font-weight: 500;
+}
+
+.blog-codeblock {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: visible;
+  margin: 12px 0;
+}
+
+.blog-codeblock pre {
+  margin: 0;
+}
+
 .markdown-body pre {
-  background: rgba(6, 8, 12, 0.9);
-  border: 1px solid rgba(245,245,245,0.14);
-  border-radius: 12px;
-  padding: 16px;
-  overflow: auto;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 18px;
+  position: relative;
+  line-height: 1.25;
+  margin: 12px 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .markdown-body pre code {
   padding: 0;
   background: transparent;
-  font-size: 13px;
-  color: rgba(245,245,245,0.9);
+  font-size: 0.92em;
+  font-style: normal;
+  font-weight: 500;
+  color: rgba(245,245,245,0.92);
+  display: block;
+  line-height: inherit;
+  font-family: monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.markdown-body pre code.hljs {
+  background: transparent;
+  padding: 0;
+}
+
+.markdown-body .hljs {
+  background: transparent;
+}
+
+.blog-codeblock__label {
+  position: absolute;
+  left: -28px;
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  transform-origin: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245,245,245,0.6);
+  pointer-events: none;
+  overflow: visible;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.blog-codeblock__labelText {
+  display: block;
+  white-space: nowrap;
 }
 
 .markdown-body ul,
@@ -83,15 +216,55 @@
 
 .markdown-body img {
   max-width: 100%;
-  border-radius: 12px;
-  border: 1px solid rgba(245,245,245,0.12);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
 }
 
 .markdown-body table {
   width: 100%;
   border-collapse: collapse;
   margin: 18px 0;
+}
+
+.markdown-body details {
+  margin: 18px 0;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.04);
+  border-left: 2px solid rgba(var(--accentRGB), 0.5);
+}
+
+.markdown-body summary {
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: rgba(245,245,245,0.9);
+  list-style: none;
+}
+
+.markdown-body summary strong,
+.markdown-body summary b {
+  font-weight: 400;
+}
+
+.markdown-body summary::-webkit-details-marker {
+  display: none;
+}
+
+.markdown-body summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 8px;
+  transition: transform 0.2s ease;
+  color: rgba(var(--accentRGB), 0.8);
+}
+
+.markdown-body details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.markdown-body details > *:not(summary) {
+  margin-top: 10px;
 }
 
 .markdown-body th,
@@ -107,10 +280,20 @@
 
 @media (max-width: 720px) {
   .markdown-body {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .markdown-body h1 { font-size: 24px; }
   .markdown-body h2 { font-size: 21px; }
   .markdown-body h3 { font-size: 18px; }
+
+  .markdown-body pre {
+    padding: 16px;
+  }
+
+  .blog-codeblock__label {
+    left: -22px;
+    font-size: 11px;
+    max-width: 180px;
+  }
 }

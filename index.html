@@ -3,19 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TITAN Softwork Solutions | Advanced Security Engineering</title>
+    <title>TITAN Softwork Solutions | Offensive Security Consulting</title>
     <meta
       name="description"
-      content="TITAN Softwork Solutions builds advanced offensive research tooling and resilient defensive systems. Blue-team and red-team software engineering, research, and development."
+      content="TITAN Softwork Solutions is a premium offensive security consultancy delivering adversary emulation, detection gap discovery, and executive-ready assurance for high-risk organizations."
     />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#050506" />
+    <meta name="color-scheme" content="dark" />
+
+    <style>
+      html, body { background: #050506; margin: 0; }
+    </style>
 
     <meta property="og:site_name" content="TITAN Softwork Solutions" />
     <meta property="og:title" content="TITAN Softwork Solutions" />
     <meta
       property="og:description"
-      content="Advanced offensive research tooling and resilient defensive systems. Blue-team and red-team software engineering, research, and development."
+      content="Premium offensive security consultancy delivering adversary emulation, detection gap discovery, and executive-ready assurance for high-risk organizations."
     />
     <meta property="og:type" content="website" />
 
@@ -23,15 +28,18 @@
     <meta name="twitter:title" content="TITAN Softwork Solutions" />
     <meta
       name="twitter:description"
-      content="Advanced offensive research tooling and resilient defensive systems. Blue-team and red-team software engineering, research, and development."
+      content="Premium offensive security consultancy delivering adversary emulation, detection gap discovery, and executive-ready assurance for high-risk organizations."
     />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Fira+Code:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
     <div id="app">
@@ -78,7 +86,7 @@
             </div>
 
             <div class="site-nav__item">
-              <a class="site-nav__link" href="/blog/">Blog</a>
+              <a class="site-nav__link" href="/blog/">Insights</a>
             </div>
 
             <div class="site-nav__item" data-menu="contact">
@@ -101,15 +109,15 @@
           </div>
 
           <div class="hero__overlay" aria-hidden="true"></div>
+          <div class="hero__focusContext" aria-hidden="true">Global cyber-attack activity map</div>
 
           <div class="hero__copy">
-            <h1 class="hero__headline">TITAN SOFTWORKS</h1>
-            <p class="hero__sub">Built to break systems. Built to harden them.</p>
+            <h1 class="hero__headline">TITAN SOFTWORK SOLUTIONS</h1>
+            <p class="hero__sub">Offensive security consulting focused on Windows tradecraft, detection gaps, and response readiness.</p>
 
             <div class="hero__ctaRow">
               <a class="cta cta--primary" href="#projects">View projects</a>
               <a class="cta cta--ghost" href="#contact">Contact</a>
-              <a class="cta cta--ghost" href="https://github.com/TITAN-Softwork-Solutions" target="_blank" rel="noreferrer">GitHub org</a>
             </div>
           </div>
         </section>
@@ -117,33 +125,33 @@
         <section id="program" class="section section--program section--center">
           <div class="container">
             <div class="sectionHead sectionHead--program stagger">
-              <div class="section__eyebrow">PROGRAM FOCUS</div>
-              <h2 class="section__title">ADVANCED SECURITY ENGINEERING, END-TO-END.</h2>
-              <p class="section__lead">
-Hand-crafted security tooling built end-to-end through intensive iteration and continuous refinement. Each component is purpose-designed for its role, tuned for precision, and engineered for high performance.
-              </p>
-              <div class="program-industrial__meta" aria-label="Program focus highlights">
-                <span>HAND-WRITTEN R&amp;D</span>
-                <span>ITERATIVE REFINEMENT</span>
-                <span>MODERN TECHNIQUES</span>
-              </div>
+              <div class="section__eyebrow">FOCUS</div>
+<h2 class="section__title">OFFENSIVE SECURITY WITH ENGINEERING DISCIPLINE.</h2>
+<p class="section__lead">
+We run scoped adversary emulation against Windows environments to identify detection and response gaps. Deliverables include a replayable attack narrative, supporting evidence, and fixes your team can implement.
+</p>
+            <div class="program-industrial__meta" aria-label="Program focus highlights">
+              <span>OUTCOME-DRIVEN</span>
+              <span>EXECUTIVE-SAFE</span>
+              <span>RISK REDUCTION</span>
+            </div>
             </div>
 
             <div class="program-industrial__grid grid grid--3 stagger" aria-label="Program focus modules">
               <article class="program-module program-module--primary">
                 <div class="program-module__rail">
                   <span class="program-module__index">01</span>
-                  <span class="program-module__tag">OFFENSE</span>
+                  <span class="program-module__tag">ADVERSARY</span>
                 </div>
                 <div class="program-module__body">
-                  <h3 class="program-module__title">Offensive research tooling</h3>
+                  <h3 class="program-module__title">Adversary emulation &amp; capability analysis</h3>
                   <p class="program-module__text">
-Hand-written offensive tooling built through tight iteration and refinement. Focused on controlled execution paths, telemetry mapping, and AV/EDR-aware operation for real constraints.
+High-fidelity emulation of real-world adversaries with clear scope, constraints, and reporting. We measure control effectiveness across execution paths, telemetry, and detection coverage.
                   </p>
                   <div class="program-module__chips">
-                    <span>KERNEL AWARE</span>
-                    <span>HOOKING-RESILIENT</span>
-                    <span>EDR/AV RESEARCH</span>
+                    <span>EMULATION PLANS</span>
+                    <span>DETECTION GAPS</span>
+                    <span>CONTROL COVERAGE</span>
                   </div>
                 </div>
               </article>
@@ -151,17 +159,17 @@ Hand-written offensive tooling built through tight iteration and refinement. Foc
               <article class="program-module">
                 <div class="program-module__rail">
                   <span class="program-module__index">02</span>
-                  <span class="program-module__tag">DEFENSE</span>
+                  <span class="program-module__tag">ASSURANCE</span>
                 </div>
                 <div class="program-module__body">
-                  <h3 class="program-module__title">Resilient defensive systems</h3>
+                  <h3 class="program-module__title">Detection assurance &amp; hardening</h3>
                   <p class="program-module__text">
-High-signal detection engineering for fast attribution and decisive response. Behavior analytics, heuristics, and scoring built to hold up in hostile or noisy environments.
+We validate detection logic, surface blind spots, and provide remediation guidance that improves resilience without disrupting operations.
                   </p>
                   <div class="program-module__chips">
-                    <span>THREAT HEURISTICS</span>
-                    <span>RULESETS + TRIAGE</span>
-                    <span>NEUTRALIZATION</span>
+                    <span>ASSURANCE REPORTS</span>
+                    <span>REMEDIATION PLANS</span>
+                    <span>EXECUTIVE READOUTS</span>
                   </div>
                 </div>
               </article>
@@ -169,17 +177,17 @@ High-signal detection engineering for fast attribution and decisive response. Be
               <article class="program-module">
                 <div class="program-module__rail">
                   <span class="program-module__index">03</span>
-                  <span class="program-module__tag">FUSION</span>
+                  <span class="program-module__tag">BOUNDARIES</span>
                 </div>
                 <div class="program-module__body">
-                  <h3 class="program-module__title">Blue + Red tooling</h3>
+                  <h3 class="program-module__title">Kernel/user boundary analysis</h3>
                   <p class="program-module__text">
-A unified pipeline where offensive research shapes defensive controls. Techniques are validated end-to-end and translated into operational, deployment-ready capability.
+We analyze high-risk boundary conditions across kernel and user space to identify escalation paths, telemetry gaps, and defensive failure modes.
                   </p>
                   <div class="program-module__chips">
-                    <span>RED/BLUE FEEDBACK</span>
-                    <span>CAPABILITY ENGINEERING</span>
-                    <span>RESEARCH TO DEPLOYMENT</span>
+                    <span>PRIV ESC PATHS</span>
+                    <span>TELEMETRY COVERAGE</span>
+                    <span>RISK ANALYSIS</span>
                   </div>
                 </div>
               </article>
@@ -189,10 +197,10 @@ A unified pipeline where offensive research shapes defensive controls. Technique
 
         <section id="projects" class="section section--projects section--light section--center">
           <div class="container">
-            <div class="section__eyebrow">OPEN RESEARCH</div>
-            <h2 class="section__title">FEATURED TITAN PROJECTS</h2>
+            <div class="section__eyebrow">RESEARCH OUTPUTS</div>
+            <h2 class="section__title">FEATURED TITAN DELIVERABLES</h2>
             <p class="section__lead">
-              Research tooling and defensive systems from the TITAN ecosystem: organization repositories and founder-led R&amp;D.
+              Select open research from the TITAN ecosystem. These repositories represent methodologies and technical depth supporting client assurance work.
             </p>
 
             <div class="projectBar">
@@ -206,14 +214,14 @@ A unified pipeline where offensive research shapes defensive controls. Technique
             </div>
 
             <div class="grid grid--3 stagger">
-              <a class="project project--link" href="https://github.com/TITAN-Softwork-Solutions/CCGT-Packer" target="_blank" rel="noreferrer" aria-label="Open repository: CCGT-Packer">
+              <a class="project project--link" href="https://github.com/dutchpsycho/ActiveBreach-Engine" target="_blank" rel="noreferrer" aria-label="Open repository: ActiveBreach Engine">
                 <div class="project__top">
-                  <div class="project__name">CCGT-Packer</div>
-                  <div class="project__meta">Post-build string encryption packing tool</div>
+                  <div class="project__name">ActiveBreach Engine</div>
+                  <div class="project__meta">SysWhispers &amp; HellsGate successor, DSE direct syscall execution framework</div>
                 </div>
                 <p class="project__text">
-                  Post-build string protection for Windows; encrypts eligible literals, stores metadata in a PE section, and
-                  decrypts on-demand at runtime to reduce static string exposure.
+                  Dynamic direct-syscall framework for Windows, built as a modern SysWhispers/Hell's Gate successor for
+                  AV/EDR research and hooking-aware execution.
                 </p>
               </a>
 
@@ -228,24 +236,25 @@ A unified pipeline where offensive research shapes defensive controls. Technique
                 </p>
               </a>
 
-              <a class="project project--link" href="https://github.com/TITAN-Softwork-Solutions/Vigil" target="_blank" rel="noreferrer" aria-label="Open repository: Vigil">
+              <a class="project project--link" href="https://github.com/TITAN-Softwork-Solutions/Vesuki-Polymorphic-Control-Flow-Obfuscator" target="_blank" rel="noreferrer" aria-label="Open repository: Vesuki">
                 <div class="project__top">
-                  <div class="project__name">Vigil</div>
-                  <div class="project__meta">Blue-team ETW telemetry for sensitive file access</div>
+                  <div class="project__name">Vesuki</div>
+                  <div class="project__meta">Defensive Rust control-flow obfuscation and anti-analysis tooling</div>
                 </div>
                 <p class="project__text">
-                  Lightweight Windows ETW telemetry for detecting untrusted processes accessing protected filesystem resources.
+                  Rust control-flow hardening and obfuscation: proc-macro transforms functions into
+                  dispatcher-style execution with randomized noise to raise the cost of static analysis and reversing.
                 </p>
               </a>
 
-              <a class="project project--link" href="https://github.com/dutchpsycho/ActiveBreach-Engine" target="_blank" rel="noreferrer" aria-label="Open repository: ActiveBreach Engine">
+              <a class="project project--link" href="https://github.com/TITAN-Softwork-Solutions/CCGT-Packer" target="_blank" rel="noreferrer" aria-label="Open repository: CCGT-Packer">
                 <div class="project__top">
-                  <div class="project__name">ActiveBreach Engine</div>
-                  <div class="project__meta">SysWhispers &amp; HellsGate successor, DSE direct syscall execution framework</div>
+                  <div class="project__name">CCGT-Packer</div>
+                  <div class="project__meta">Post-build string encryption packing tool</div>
                 </div>
                 <p class="project__text">
-                  Dynamic direct-syscall framework for Windows, built as a modern SysWhispers/Hell's Gate successor for
-                  AV/EDR research and hooking-aware execution.
+                  Post-build string protection for Windows; encrypts eligible literals, stores metadata in a PE section, and
+                  decrypts on-demand at runtime to reduce static string exposure.
                 </p>
               </a>
 
@@ -259,14 +268,13 @@ A unified pipeline where offensive research shapes defensive controls. Technique
                 </p>
               </a>
 
-              <a class="project project--link" href="https://github.com/TITAN-Softwork-Solutions/Vesuki-Polymorphic-Control-Flow-Obfuscator" target="_blank" rel="noreferrer" aria-label="Open repository: Vesuki">
+              <a class="project project--link" href="https://github.com/TITAN-Softwork-Solutions/Vigil" target="_blank" rel="noreferrer" aria-label="Open repository: Vigil">
                 <div class="project__top">
-                  <div class="project__name">Vesuki</div>
-                  <div class="project__meta">Defensive Rust control-flow obfuscation and anti-analysis tooling</div>
+                  <div class="project__name">Vigil</div>
+                  <div class="project__meta">Blue-team ETW telemetry for sensitive file access</div>
                 </div>
                 <p class="project__text">
-                  Rust control-flow hardening and obfuscation: proc-macro transforms functions into
-                  dispatcher-style execution with randomized noise to raise the cost of static analysis and reversing.
+                  Lightweight Windows ETW telemetry for detecting untrusted processes accessing protected filesystem resources.
                 </p>
               </a>
             </div>
@@ -335,9 +343,9 @@ A unified pipeline where offensive research shapes defensive controls. Technique
         <section id="contact" class="section section--contact section--center">
           <div class="container">
             <div class="section__eyebrow">CONTACT</div>
-            <h2 class="section__title">INQUIRIES</h2>
+            <h2 class="section__title">EXECUTIVE INQUIRIES</h2>
             <p class="section__lead">
-              For project inquiries, research collaboration, or secure tooling work, reach out directly.
+              For assurance engagements, adversary emulation, and detection gap assessments, reach out directly.
             </p>
 
             <div class="contactBox">
@@ -368,13 +376,16 @@ A unified pipeline where offensive research shapes defensive controls. Technique
       </footer>
     </div>
 
-    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/entries/home.js"></script>
     <script>
+      const hasSectionHash = !!window.location.hash && window.location.hash !== "#home";
       if ("scrollRestoration" in history) {
-        history.scrollRestoration = "manual";
+        history.scrollRestoration = hasSectionHash ? "auto" : "manual";
       }
       window.addEventListener("load", () => {
-        window.scrollTo(0, 0);
+        if (!hasSectionHash) {
+          window.scrollTo(0, 0);
+        }
       });
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>

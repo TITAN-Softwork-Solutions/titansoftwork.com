@@ -3,16 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TITAN Softwork Solutions | Blog</title>
+    <title>TITAN Softwork Solutions | Insights</title>
     <meta
       name="description"
       content="Field notes, release updates, and security engineering research from TITAN Softwork Solutions."
     />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="dark" />
+
+    <style>
+      html, body { background: #000; margin: 0; }
+    </style>
+
+    <script>
+      // Prevent the list hero flashing when deep-linking into a post.
+      if (location.search.includes("post=")) {
+        document.documentElement.classList.add("is-blog-post");
+      }
+    </script>
 
     <meta property="og:site_name" content="TITAN Softwork Solutions" />
-    <meta property="og:title" content="TITAN Softwork Solutions | Blog" />
+    <meta property="og:title" content="TITAN Softwork Solutions | Insights" />
     <meta
       property="og:description"
       content="Field notes, release updates, and security engineering research from TITAN Softwork Solutions."
@@ -20,18 +32,23 @@
     <meta property="og:type" content="website" />
 
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="TITAN Softwork Solutions | Blog" />
+    <meta name="twitter:title" content="TITAN Softwork Solutions | Insights" />
     <meta
       name="twitter:description"
       content="Field notes, release updates, and security engineering research from TITAN Softwork Solutions."
     />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Fira+Code:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="stylesheet" href="/src/style.css" />
+    <link rel="stylesheet" href="/src/styles/10-blog.css" />
+    <link rel="stylesheet" href="/src/styles/11-markdown.css" />
   </head>
   <body>
     <div id="app" class="blog-app">
@@ -45,37 +62,66 @@
           </a>
 
           <nav class="site-nav" aria-label="Primary">
-            <div class="site-nav__item">
-              <a class="site-nav__link" href="/#home">Home</a>
+            <div class="site-nav__item" data-menu="projects">
+              <a class="site-nav__link" href="/#projects">
+                Projects
+              </a>
+              <div class="site-nav__dropdown" role="menu">
+                <a data-repo="CCGT-Packer" href="https://github.com/TITAN-Softwork-Solutions/CCGT-Packer" target="_blank" rel="noreferrer">CCGT-Packer</a>
+                <a data-repo="Regera" href="https://github.com/TITAN-Softwork-Solutions/Regera" target="_blank" rel="noreferrer">Regera</a>
+                <a data-repo="Vigil" href="https://github.com/TITAN-Softwork-Solutions/Vigil" target="_blank" rel="noreferrer">Vigil</a>
+                <a data-repo="Vesuki" href="https://github.com/TITAN-Softwork-Solutions/Vesuki-Polymorphic-Control-Flow-Obfuscator" target="_blank" rel="noreferrer">Vesuki</a>
+                <a data-repo="ActiveBreach-Engine" href="https://github.com/dutchpsycho/ActiveBreach-Engine" target="_blank" rel="noreferrer">ActiveBreach Engine</a>
+                <a data-repo="KFD" href="https://github.com/dutchpsycho/KFD" target="_blank" rel="noreferrer">KFD</a>
+              </div>
             </div>
-            <div class="site-nav__item">
-              <a class="site-nav__link" href="/#projects">Projects</a>
+
+            <div class="site-nav__item" data-menu="community">
+              <a class="site-nav__link" href="/#community">
+                Community
+              </a>
+              <div class="site-nav__dropdown" role="menu">
+                <a href="https://hub.titansoftwork.com" target="_blank" rel="noreferrer">Discord</a>
+              </div>
             </div>
-            <div class="site-nav__item">
-              <a class="site-nav__link" href="/#community">Community</a>
+
+            <div class="site-nav__item" data-menu="github">
+              <a class="site-nav__link" href="https://github.com/TITAN-Softwork-Solutions" target="_blank" rel="noreferrer">
+                GitHub
+              </a>
+              <div class="site-nav__dropdown" role="menu">
+                <a href="https://github.com/TITAN-Softwork-Solutions" target="_blank" rel="noreferrer">Organization</a>
+              </div>
             </div>
+
             <div class="site-nav__item">
-              <a class="site-nav__link" href="/#contact">Contact</a>
+              <a class="site-nav__link site-nav__link--active" href="/blog/" aria-current="page">Insights</a>
             </div>
-            <div class="site-nav__item">
-              <a class="site-nav__link site-nav__link--active" href="/blog/" aria-current="page">Blog</a>
+
+            <div class="site-nav__item" data-menu="contact">
+              <a class="site-nav__link" href="/#contact">
+                Contact
+              </a>
+              <div class="site-nav__dropdown" role="menu">
+                <a href="/#contact">Inquiries</a>
+              </div>
             </div>
           </nav>
         </div>
       </header>
 
       <main class="page blog-page" role="main">
-        <section class="section blog-hero" aria-label="Blog overview">
+        <section class="section blog-hero" aria-label="Insights overview">
           <div class="container">
-            <div class="section__eyebrow">Blog</div>
-            <h1 class="section__title">TITAN Research</h1>
+            <div class="section__eyebrow">Insights</div>
+            <h1 class="section__title">TITAN INSIGHTS</h1>
             <p class="section__lead">
-              Research notes, release updates, and operational insights from TITAN Softwork Solutions.
+              Research notes, release updates, and operational field intelligence from TITAN Softwork Solutions.
             </p>
           </div>
         </section>
 
-        <section class="section blog-feed" aria-label="Blogposts">
+        <section class="section blog-feed" aria-label="Insights">
           <div class="container">
             <div id="blog-status" class="blog-status">Loading blogposts...</div>
 
@@ -85,18 +131,53 @@
             </div>
 
             <div class="blog-view" data-blog-view="post" hidden>
-              <div class="blog-post__header">
-                <div class="blog-post__meta" id="blog-post-meta"></div>
-                <h2 class="blog-post__title" id="blog-post-title"></h2>
+              <div class="blog-post-hero" aria-hidden="true">
+                <div class="blog-post-hero__overlay"></div>
+                <div class="blog-post-hero__content">TITAN INSIGHTS</div>
               </div>
-              <div class="blog-post__body markdown-body" id="blog-post-body"></div>
+
+              <div class="blog-post__layout">
+                <div class="blog-post__content">
+                  <div class="blog-post__header">
+                    <div class="blog-post__meta" id="blog-post-meta"></div>
+                    <h2 class="blog-post__title" id="blog-post-title"></h2>
+                  </div>
+                  <div class="blog-post__body markdown-body" id="blog-post-body"></div>
+                </div>
+
+                <aside class="blog-post__aside" id="blog-post-aside" aria-label="Post navigation">
+                  <div class="blog-toc">
+                    <div class="blog-toc__label">On this page</div>
+                    <nav class="blog-toc__list" id="blog-toc-list"></nav>
+                  </div>
+
+                  <div class="blog-progress" id="blog-progress">
+                    <div class="blog-progress__track" id="blog-progress-track">
+                      <div class="blog-progress__fill" id="blog-progress-fill"></div>
+                      <div
+                        class="blog-progress__handle"
+                        id="blog-progress-handle"
+                        role="slider"
+                        aria-label="Post position"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        aria-valuenow="0"
+                        tabindex="0"
+                      ></div>
+                    </div>
+                  </div>
+                </aside>
+              </div>
             </div>
           </div>
         </section>
       </main>
 
+      <footer class="blog-footer" role="contentinfo">
+        © 2026 TITAN Softwork Solutions. All rights reserved.
+      </footer>
     </div>
 
-    <script type="module" src="/src/blog.js"></script>
+    <script type="module" src="/src/entries/blog.js"></script>
   </body>
 </html>

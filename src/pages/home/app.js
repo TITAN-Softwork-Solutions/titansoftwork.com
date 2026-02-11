@@ -3,6 +3,7 @@ import * as THREE from "three";
 import { setup } from "../../core/setup.js";
 import { attachResize } from "../../core/resize.js";
 import { startLoop } from "../../core/loop.js";
+import { createAdaptiveQuality } from "../../core/quality.js";
 
 import { loadBreaches } from "../../data/breaches.js";
 
@@ -204,12 +205,105 @@ function initDiscordWidget() {
   setInterval(refresh, 60_000);
 }
 
+function initInquiryModal() {
+  const modal = document.getElementById("inquiry-modal");
+  if (!modal) return;
+
+  const openButtons = [...document.querySelectorAll("[data-inquiry-open]")];
+  const closeButtons = [...modal.querySelectorAll("[data-inquiry-close]")];
+  const form = modal.querySelector("#inquiry-form");
+  const emailInput = modal.querySelector("#inquiry-email");
+  const companyInput = modal.querySelector("#inquiry-company");
+  const scopeInput = modal.querySelector("#inquiry-scope");
+
+  if (!openButtons.length || !form || !emailInput) return;
+
+  const INQUIRY_EMAIL = "inquire@titansoftwork.com";
+  let lastFocused = null;
+
+  function openModal() {
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    modal.classList.add("is-open");
+    document.body.classList.add("modal-open");
+    window.setTimeout(() => emailInput.focus(), 0);
+  }
+
+  function closeModal() {
+    modal.classList.remove("is-open");
+    document.body.classList.remove("modal-open");
+    modal.hidden = true;
+    if (lastFocused && typeof lastFocused.focus === "function") {
+      lastFocused.focus();
+    }
+  }
+
+  function buildMailtoHref() {
+    const email = String(emailInput.value || "").trim();
+    const company = String(companyInput?.value || "").trim();
+    const scope = String(scopeInput?.value || "").trim();
+
+    const subject = company
+      ? `Inquiry - ${company}`
+      : "Inquiry - TITAN Engagement";
+    const bodyLines = [
+      `Email: ${email}`,
+      company ? `Company: ${company}` : null,
+      "",
+      "Scope:",
+      scope || "(not provided)",
+    ].filter(Boolean);
+
+    const body = bodyLines.join("\n");
+    return `mailto:${INQUIRY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
+
+  openButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      openModal();
+    });
+  });
+
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", closeModal);
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    if (modal.hidden) return;
+    closeModal();
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!emailInput.checkValidity()) {
+      emailInput.reportValidity();
+      return;
+    }
+    window.location.href = buildMailtoHref();
+    closeModal();
+  });
+}
+
 async function main() {
   const { scene, camera, renderer, hud } = setup();
   attachResize({ camera, renderer });
 
-  initNavDropdowns();
-  initDiscordWidget();
+  const startNonCritical = () => {
+    window.setTimeout(() => {
+      initNavDropdowns();
+      initDiscordWidget();
+    }, 1200);
+  };
+  if (document.readyState === "complete") {
+    startNonCritical();
+  } else {
+    window.addEventListener("load", startNonCritical, { once: true });
+  }
+
+  const quality = createAdaptiveQuality({ renderer });
+  initInquiryModal();
 
   const heroEl = document.querySelector(".hero");
   const stageEl = document.getElementById("stage");
@@ -400,7 +494,8 @@ async function main() {
     orbitControls: orbit.controls,
     interaction: interactionState,
     globeGroup: globe.group,
-    onFrame: ({ time, width, height }) => {
+    onFrame: ({ dt, time, width, height }) => {
+      quality.onFrame(dt, { interacting: interactionState.draggingGlobe });
       const stageRect = renderer.domElement.getBoundingClientRect();
 
       for (const item of markers.items) {

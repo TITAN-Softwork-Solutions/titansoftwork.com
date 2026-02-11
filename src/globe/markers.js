@@ -5,8 +5,8 @@ export function createMarkers({ globeGroup, breaches, radius }) {
   const markerGroup = new THREE.Group();
   globeGroup.add(markerGroup);
 
-  const arcOuterGeo = new THREE.TorusGeometry(0.066, 0.0022, 12, 64, Math.PI);
-  const arcInnerGeo = new THREE.TorusGeometry(0.052, 0.0019, 12, 64, Math.PI);
+  const arcOuterGeo = new THREE.TorusGeometry(0.066, 0.0022, 10, 44, Math.PI);
+  const arcInnerGeo = new THREE.TorusGeometry(0.052, 0.0019, 10, 44, Math.PI);
   const arcMat = new THREE.MeshStandardMaterial({
     color: 0xf5f5f5,
     emissive: 0xffffff,
@@ -17,7 +17,7 @@ export function createMarkers({ globeGroup, breaches, radius }) {
     opacity: 0.92
   });
 
-  const stemGeo = new THREE.CylinderGeometry(0.0016, 0.0016, 0.085, 10);
+  const stemGeo = new THREE.CylinderGeometry(0.0016, 0.0016, 0.085, 8);
   const stemMat = new THREE.MeshStandardMaterial({
     color: 0xf5f5f5,
     emissive: 0xffffff,

@@ -18,9 +18,12 @@ export function setup() {
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
-    alpha: false
+    alpha: false,
+    powerPreference: "high-performance"
   });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const maxPixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+  // Start slightly lower for faster first render, then upscale adaptively.
+  renderer.setPixelRatio(Math.max(1, maxPixelRatio * 0.82));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0x040405, 1);
 
@@ -35,9 +38,8 @@ export function setup() {
 
   scene.add(new THREE.AmbientLight(0xffffff, 0.20));
 
-  
-  const loader = new THREE.TextureLoader();
-  scene.background = loader.load("https://threejs.org/examples/textures/planets/starfield.jpg");
+  // Keep background local-only and deterministic; avoids external fetch failures.
+  scene.background = null;
 
   return { canvas, hud, scene, camera, renderer };
 }

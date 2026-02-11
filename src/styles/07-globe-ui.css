@@ -109,6 +109,7 @@
 }
 
 .atlas-card--focused {
+  width: min(520px, calc(100vw - 32px));
   background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.06));
   border-color: rgba(245,245,245,0.26);
   box-shadow:
@@ -122,7 +123,22 @@
 }
 
 .atlas-card--focused .atlas-card__title {
+  display: block;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
+  overflow: visible;
   text-shadow: 0 18px 60px rgba(0,0,0,0.68);
+}
+
+.atlas-card--focused .atlas-card__snippet {
+  display: block;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
+  overflow: visible;
+}
+
+.atlas-card--focused .atlas-card__hint {
+  display: none;
 }
 
 .atlas-alt {
@@ -329,6 +345,10 @@
   .atlas-card {
     width: calc(100vw - 24px);
     padding: 12px;
+  }
+
+  .atlas-card--focused {
+    width: calc(100vw - 24px);
   }
 
   .atlas-card__title {

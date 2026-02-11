@@ -10,15 +10,6 @@ function setSRGB(tex) {
   }
 }
 
-function setLinear(tex) {
-  if (!tex) return;
-  if ("colorSpace" in tex && THREE.NoColorSpace) {
-    tex.colorSpace = THREE.NoColorSpace;
-  } else if ("encoding" in tex && THREE.LinearEncoding) {
-    tex.encoding = THREE.LinearEncoding;
-  }
-}
-
 function tuneForSharpness(tex, { anisotropy = 16 } = {}) {
   if (!tex) return;
   tex.anisotropy = anisotropy;
@@ -111,29 +102,26 @@ export function createGlobe({ scene, loadingManager = undefined }) {
 
   
   const earthMap = loader.load(
-    "https://upload.wikimedia.org/wikipedia/commons/0/04/Solarsystemscope_texture_8k_earth_daymap.jpg"
+    "https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg",
+    (tex) => {
+      setSRGB(tex);
+      tuneForSharpness(tex, { anisotropy: 16 });
+      const cyber = makeCyberEarthMapTexture(tex);
+      earthMesh.material.map = cyber;
+      earthMesh.material.needsUpdate = true;
+    }
   );
-  const earthBump = loader.load("https://threejs.org/examples/textures/planets/earth_bump_2048.jpg");
-  const earthSpec = loader.load("https://threejs.org/examples/textures/planets/earth_specular_2048.jpg");
-
   setSRGB(earthMap);
-  setLinear(earthBump);
-  setLinear(earthSpec);
 
   tuneForSharpness(earthMap, { anisotropy: 16 });
-  tuneForSharpness(earthBump, { anisotropy: 8 });
-  tuneForSharpness(earthSpec, { anisotropy: 8 });
 
-  const earthGeo = new THREE.SphereGeometry(radius, 128, 128);
+  const earthGeo = new THREE.SphereGeometry(radius, 96, 96);
 
   
   const earthMat = new THREE.MeshPhongMaterial({
     map: earthMap,
-    bumpMap: earthBump,
-    bumpScale: 0.05,
+    bumpScale: 0.0,
 
-    
-    specularMap: earthSpec,
     specular: new THREE.Color(0x171a1d), 
     shininess: 8,                        
 
@@ -146,23 +134,11 @@ export function createGlobe({ scene, loadingManager = undefined }) {
   group.add(earthMesh);
 
   
-  loader.load(
-    "https://upload.wikimedia.org/wikipedia/commons/0/04/Solarsystemscope_texture_8k_earth_daymap.jpg",
-    (tex) => {
-      setSRGB(tex);
-      tuneForSharpness(tex, { anisotropy: 16 });
-
-      const cyber = makeCyberEarthMapTexture(tex);
-      earthMesh.material.map = cyber;
-      earthMesh.material.needsUpdate = true;
-    }
-  );
-
   const grid = createGrid({
     radius: radius * 1.004,
     latStepDeg: 15,
     lonStepDeg: 15,
-    segments: 144,
+    segments: 96,
     opacity: 0.28
   });
   grid.renderOrder = 1;

@@ -1,7 +1,7 @@
 $NAME "ActiveBreach Engine: Rethinking Syscall Execution Under EDR"
 $DATE 05-02-2026
 $TAGS "hooks, windows"
-$AUTHOR "dutchpsycho"
+$AUTHOR "8damon"
 $PREVIEW "Modern defensive tooling doesn’t need to see payloads to stop you, it only needs to see the call path. This post breaks down how Windows system calls are intercepted, how syscall stubs became signatures, and why ActiveBreach takes a fundamentally different approach."
 
 ## Thesis
@@ -14,7 +14,7 @@ In this post, we'll dive into how I developed **ABE** and how Windows handles **
 
 This article is about the **Rust implementation** of ActiveBreach Engine, which is currently the most mature and feature-complete version in the SDK.
 
-ActiveBreach Engine project: [github.com/dutchpsycho/ActiveBreach-Engine](https://github.com/dutchpsycho/ActiveBreach-Engine)
+ActiveBreach Engine project: [github.com/8damon/ActiveBreach-Engine](https://github.com/8damon/ActiveBreach-Engine)
 
 The SDK also includes C and C++ variants, but the Rust version is the most advanced and actively developed, which is why it is the focus here.
 
@@ -399,7 +399,7 @@ KFD takes a different architectural direction. Instead of generating and staging
 
 Where ABE centralizes and mediates syscall execution through a dispatcher, KFD focuses on gadgets and reusing system-provided APIs ones.
 
-[github.com/dutchpsycho/KFD](https://github.com/dutchpsycho/KFD)
+[github.com/8damon/KFD](https://github.com/8damon/KFD)
 
 ## Conclusion
 
@@ -409,6 +409,6 @@ Red-team's have long needed a tool for dealing with API hooking that is secure, 
 
 If you're interested, I would highly reccomend reading the code at;
 
-[Activebreach-Engine (Rust Crate)](https://github.com/dutchpsycho/ActiveBreach-Engine/blob/main/SDK/Rust/src/internal)
+[Activebreach-Engine (Rust Crate)](https://github.com/8damon/ActiveBreach-Engine/blob/main/SDK/Rust/src/internal)
 
 This will give you insight to the code design behind **ABE**.

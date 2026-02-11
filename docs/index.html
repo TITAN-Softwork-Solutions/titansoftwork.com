@@ -34,16 +34,28 @@
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Fira+Code:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Fira+Code:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Fira+Code:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
-    <script type="module" crossorigin src="/assets/main-B_ovNycH.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/style-DIVpodoY.js">
-    <link rel="stylesheet" crossorigin href="/assets/style-ZscTnzxF.css">
+    <script type="module" crossorigin src="/assets/main-Cq2YdCx5.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/style-DzDJh4F6.js">
+    <link rel="stylesheet" crossorigin href="/assets/style-CeC8YdlA.css">
   </head>
   <body>
     <div id="app">
@@ -107,7 +119,7 @@
 
       <main class="page" role="main">
         <section id="home" class="hero" aria-label="TITAN Interactive Globe">
-          <div id="stage" class="hero__stage" aria-label="Interactive globe stage">
+          <div id="stage" class="hero__stage">
             <canvas id="gl"></canvas>
             <div id="hud"></div>
           </div>
@@ -363,12 +375,76 @@ We analyze high-risk boundary conditions across kernel and user space to identif
                 </div>
               </div>
               <div class="contactBox__col contactBox__col--cta">
-                <a class="cta cta--primary" href="mailto:inquire@titansoftwork.com">Start inquiry</a>
+                <button class="cta cta--primary" type="button" data-inquiry-open>Start inquiry</button>
               </div>
             </div>
           </div>
         </section>
       </main>
+
+      <div class="inquiryModal" id="inquiry-modal" hidden>
+        <div class="inquiryModal__backdrop" data-inquiry-close></div>
+        <div
+          class="inquiryModal__dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="inquiry-title"
+          aria-describedby="inquiry-desc"
+        >
+          <button class="inquiryModal__close" type="button" aria-label="Close inquiry form" data-inquiry-close>
+            ×
+          </button>
+
+          <div class="inquiryModal__eyebrow">Inquiry</div>
+          <h3 class="inquiryModal__title" id="inquiry-title">Start Your Engagement</h3>
+          <p class="inquiryModal__desc" id="inquiry-desc">
+            Share your email and context. We will draft your inquiry in your email client.
+          </p>
+
+          <form class="inquiryForm" id="inquiry-form" novalidate>
+            <label class="inquiryForm__field">
+              <span class="inquiryForm__label">Email</span>
+              <input
+                class="inquiryForm__input"
+                id="inquiry-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="you@company.com"
+                required
+              />
+            </label>
+
+            <label class="inquiryForm__field">
+              <span class="inquiryForm__label">Company</span>
+              <input
+                class="inquiryForm__input"
+                id="inquiry-company"
+                name="company"
+                type="text"
+                autocomplete="organization"
+                placeholder="Optional"
+              />
+            </label>
+
+            <label class="inquiryForm__field">
+              <span class="inquiryForm__label">Scope</span>
+              <textarea
+                class="inquiryForm__input inquiryForm__input--area"
+                id="inquiry-scope"
+                name="scope"
+                rows="4"
+                placeholder="Optional: brief engagement goals and timeline."
+              ></textarea>
+            </label>
+
+            <div class="inquiryForm__actions">
+              <button class="cta cta--primary" type="submit">Continue</button>
+              <button class="cta cta--ghost" type="button" data-inquiry-close>Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
 
       <footer class="footer" role="contentinfo">
         <div class="footer__inner">

@@ -117,7 +117,9 @@ export function createFocusController({
     if (!interaction.focusActive) {
       savedState = {
         camPos: camera.position.clone(),
-        target: controls.target.clone()
+        target: controls.target.clone(),
+        controlsEnabled: controls.enabled,
+        controlsDamping: controls.enableDamping
       };
     }
 
@@ -186,14 +188,19 @@ export function createFocusController({
 
     const endPos = savedState.camPos.clone();
     const endTarget = savedState.target.clone();
+    const restoreEnabled = savedState?.controlsEnabled ?? true;
+    const restoreDamping = savedState?.controlsDamping ?? true;
 
     savedState = null;
+    // Restore interaction immediately so the globe feels responsive on defocus.
+    controls.enableDamping = restoreDamping;
+    controls.enabled = restoreEnabled;
 
-    const prevEnabled = controls.enabled;
-    const prevDamping = controls.enableDamping;
-
-    controls.enabled = false;
-    controls.enableDamping = false;
+    const cancelTweenOnUserInput = () => {
+      killTweens();
+      controls.removeEventListener("start", cancelTweenOnUserInput);
+    };
+    controls.addEventListener("start", cancelTweenOnUserInput);
 
     tl = gsap.timeline({
       defaults: { ease: "power3.out" },
@@ -205,21 +212,22 @@ export function createFocusController({
         controls.target.copy(endTarget);
         controls.update();
 
-        controls.enableDamping = prevDamping;
-        controls.enabled = prevEnabled;
+        controls.enableDamping = restoreDamping;
+        controls.enabled = restoreEnabled;
+        controls.removeEventListener("start", cancelTweenOnUserInput);
         tl = null;
       }
     });
 
     tl.to(
       camera.position,
-      { x: endPos.x, y: endPos.y, z: endPos.z, duration: 0.85 },
+      { x: endPos.x, y: endPos.y, z: endPos.z, duration: 0.42 },
       0
     );
 
     tl.to(
       controls.target,
-      { x: endTarget.x, y: endTarget.y, z: endTarget.z, duration: 0.85 },
+      { x: endTarget.x, y: endTarget.y, z: endTarget.z, duration: 0.42 },
       0
     );
   }

@@ -241,8 +241,6 @@ pub unsafe fn ab_call(name: &str, args: &[usize]) -> usize {
 }
 ```
 
-![AB_CALL](./AB_CALL.png)
-
 Intended to be versatile, ``ab_call`` allows you to invoke any ``Nt*`` syscall.
 
 It's used like this;
@@ -405,7 +403,7 @@ Where ABE centralizes and mediates syscall execution through a dispatcher, KFD f
 
 Red-team's have long needed a tool for dealing with API hooking that is secure, stable & configurable, that is the goal of **Activebreach**.
 
-**ABE** was handcrafted for performing exactly that, a controlled execution model, which was stable and integrateable enough without having the trade-offs and fragility of tooling in the same category.
+**ABE** was handcrafted for performing exactly that, a controlled execution model, which was stable and integrateable enough without having the detection surface of similar tooling.
 
 If you're interested, I would highly reccomend reading the code at;
 

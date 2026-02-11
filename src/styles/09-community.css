@@ -5,25 +5,24 @@
 }
 
 .communityWidget__frame {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-decoration: none;
   color: #ffffff;
-
-  background: linear-gradient(180deg, rgba(10, 12, 16, 0.92), rgba(6, 7, 9, 0.96));
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: transparent;
+  border: 0;
   border-radius: 0;
-
-  padding: 22px 24px;
-
+  padding: 0;
+  height: 100%;
+  min-height: 100%;
   transition:
-    border-color 0.2s ease,
-    background 0.2s ease,
+    opacity 0.2s ease,
     transform 0.15s ease;
 }
 
 .communityWidget__frame:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-  background: linear-gradient(180deg, rgba(12, 14, 18, 0.96), rgba(6, 7, 9, 1));
+  opacity: 0.95;
   transform: translateY(-1px);
 }
 
@@ -65,11 +64,12 @@
 }
 
 .communityWidget__numValue::before {
-  content: "▲";
+  content: ">";
   display: inline-block;
   margin-right: 10px;
-  font-size: 0.95rem;
-  transform: translateY(-2px);
+  font-size: 1rem;
+  transform: translateY(-1px);
+  font-weight: 800;
   color: rgba(80, 255, 168, 0.92);
 }
 

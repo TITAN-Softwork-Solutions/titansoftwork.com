@@ -215,7 +215,11 @@ body.is-blog-post .markdown-body h4 { font-size: 19px; }
 }
 
 .markdown-body img {
+  display: block;
+  width: 100%;
   max-width: 100%;
+  height: auto;
+  margin: 22px auto;
   border-radius: 0;
   border: 0;
   box-shadow: none;

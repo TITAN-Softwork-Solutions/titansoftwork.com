@@ -7,6 +7,10 @@ const POSTS_PER_PAGE = 12;
 
 const dom = {
   status: document.getElementById("blog-status"),
+  loader: {
+    root: document.getElementById("blog-loader"),
+    fill: document.getElementById("blog-loader-fill"),
+  },
   grid: document.getElementById("blog-grid"),
   pagination: document.getElementById("blog-pagination"),
   hero: document.querySelector(".blog-hero"),
@@ -98,9 +102,105 @@ marked.use({ renderer });
 const STATUS_MESSAGES = {
   empty: "No posts available.",
   notFound: "Blogpost not found. Showing the latest list instead.",
+  loadingList: "Loading insights...",
+  loadingPost: "Loading article...",
   loadError:
     "Unable to load posts right now.",
 };
+
+const SITE_ORIGIN = "https://titansoftwork.com";
+const BLOG_LIST_TITLE = "TITAN Softwork Solutions | Insights";
+const BLOG_LIST_DESCRIPTION =
+  "Field notes, release updates, and security engineering research from TITAN Softwork Solutions.";
+
+function setMetaByName(name, content) {
+  let tag = document.head.querySelector(`meta[name="${name}"]`);
+  if (!tag) {
+    tag = document.createElement("meta");
+    tag.setAttribute("name", name);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute("content", content);
+}
+
+function setMetaByProperty(property, content) {
+  let tag = document.head.querySelector(`meta[property="${property}"]`);
+  if (!tag) {
+    tag = document.createElement("meta");
+    tag.setAttribute("property", property);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute("content", content);
+}
+
+function setCanonical(url) {
+  let tag = document.head.querySelector('link[rel="canonical"]');
+  if (!tag) {
+    tag = document.createElement("link");
+    tag.setAttribute("rel", "canonical");
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute("href", url);
+}
+
+function removeMetaByName(name) {
+  document.head.querySelector(`meta[name="${name}"]`)?.remove();
+}
+
+function removeMetaByProperty(property) {
+  document.head.querySelector(`meta[property="${property}"]`)?.remove();
+}
+
+function applyListSeo({ page = 1 } = {}) {
+  const canonical = page > 1
+    ? `${SITE_ORIGIN}/blog/?page=${page}`
+    : `${SITE_ORIGIN}/blog/`;
+  const title = page > 1
+    ? `TITAN Softwork Solutions | Insights (Page ${page})`
+    : BLOG_LIST_TITLE;
+
+  document.title = title;
+  setCanonical(canonical);
+  setMetaByName("description", BLOG_LIST_DESCRIPTION);
+  setMetaByName("robots", "index, follow");
+  setMetaByName("twitter:card", "summary");
+  setMetaByName("twitter:title", title);
+  setMetaByName("twitter:description", BLOG_LIST_DESCRIPTION);
+  setMetaByProperty("og:site_name", "TITAN Softwork Solutions");
+  setMetaByProperty("og:type", "website");
+  setMetaByProperty("og:url", canonical);
+  setMetaByProperty("og:title", title);
+  setMetaByProperty("og:description", BLOG_LIST_DESCRIPTION);
+  removeMetaByProperty("og:image");
+  removeMetaByName("twitter:image");
+}
+
+function applyPostSeo(post) {
+  const postTitle = post?.title || "Untitled post";
+  const title = `${postTitle} | TITAN Insights`;
+  const description = post?.excerpt || BLOG_LIST_DESCRIPTION;
+  const canonical = `${SITE_ORIGIN}/blog/${encodeURIComponent(post.slug)}/`;
+
+  document.title = title;
+  setCanonical(canonical);
+  setMetaByName("description", description);
+  setMetaByName("robots", "index, follow");
+  setMetaByName("twitter:card", "summary_large_image");
+  setMetaByName("twitter:title", title);
+  setMetaByName("twitter:description", description);
+  setMetaByProperty("og:site_name", "TITAN Softwork Solutions");
+  setMetaByProperty("og:type", "article");
+  setMetaByProperty("og:url", canonical);
+  setMetaByProperty("og:title", title);
+  setMetaByProperty("og:description", description);
+  if (post?.thumbResolved) {
+    const imageUrl = post.thumbResolved.startsWith("http")
+      ? post.thumbResolved
+      : `${SITE_ORIGIN}${post.thumbResolved}`;
+    setMetaByProperty("og:image", imageUrl);
+    setMetaByName("twitter:image", imageUrl);
+  }
+}
 
 const THREAT_MODEL_DROPDOWNS = [
   { label: "Static", match: /^static\b/i },
@@ -113,6 +213,11 @@ const THREAT_MODEL_DROPDOWNS = [
 ];
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+const loadingState = {
+  token: 0,
+  progress: 0,
+  intervalId: null,
+};
 
 function isPlainLeftClick(event) {
   return (
@@ -130,6 +235,76 @@ function setStatus(message, state = "info") {
   dom.status.textContent = message;
   dom.status.dataset.state = state;
   dom.status.hidden = !message;
+}
+
+function setLoaderProgress(value) {
+  if (!dom.loader.fill) return;
+  const safe = clamp(value, 0, 100);
+  dom.loader.fill.style.width = `${safe}%`;
+}
+
+function startLoading(message = STATUS_MESSAGES.loadingList) {
+  loadingState.token += 1;
+  const token = loadingState.token;
+
+  if (loadingState.intervalId) {
+    clearInterval(loadingState.intervalId);
+    loadingState.intervalId = null;
+  }
+
+  loadingState.progress = 8;
+  dom.loader.root?.classList.add("is-active");
+  setLoaderProgress(loadingState.progress);
+  setStatus(message, "loading");
+
+  loadingState.intervalId = setInterval(() => {
+    if (token !== loadingState.token) return;
+    const pace = loadingState.progress < 40
+      ? 7
+      : loadingState.progress < 72
+        ? 3.5
+        : 1.2;
+    loadingState.progress = Math.min(
+      92,
+      loadingState.progress + Math.random() * pace + 0.7
+    );
+    setLoaderProgress(loadingState.progress);
+  }, 120);
+
+  return token;
+}
+
+function finishLoading(token, { message = "", state = "info", persist = false } = {}) {
+  if (token !== loadingState.token) return;
+
+  if (loadingState.intervalId) {
+    clearInterval(loadingState.intervalId);
+    loadingState.intervalId = null;
+  }
+
+  loadingState.progress = 100;
+  setLoaderProgress(loadingState.progress);
+
+  window.setTimeout(() => {
+    if (token !== loadingState.token) return;
+    dom.loader.root?.classList.remove("is-active");
+    setLoaderProgress(0);
+  }, 220);
+
+  if (message) {
+    setStatus(message, state);
+    if (!persist) {
+      window.setTimeout(() => {
+        if (token !== loadingState.token) return;
+        if (dom.status?.dataset.state === state) setStatus("");
+      }, 1400);
+    }
+    return;
+  }
+
+  if (dom.status?.dataset.state === "loading") {
+    setStatus("");
+  }
 }
 
 function setView(mode) {
@@ -400,62 +575,101 @@ async function getAllPosts() {
   return posts;
 }
 
-function setUrlSearch(params, { replace = false } = {}) {
-  const url = new URL(window.location.href);
-  Object.entries(params).forEach(([key, value]) => {
-    if (value === null || value === undefined || value === "") {
-      url.searchParams.delete(key);
-    } else {
-      url.searchParams.set(key, String(value));
-    }
-  });
-  if (replace) history.replaceState({}, "", url);
-  else history.pushState({}, "", url);
+function setListUrl(page = 1, { replace = false } = {}) {
+  const safePage = Math.max(1, Number.parseInt(String(page), 10) || 1);
+  const target = safePage > 1 ? `/blog/?page=${safePage}` : "/blog/";
+  if (replace) history.replaceState({}, "", target);
+  else history.pushState({}, "", target);
 }
 
-async function showList({ page = 1, push = false } = {}) {
-  const posts = await getAllPosts();
-  renderList(posts, page);
-  if (push) setUrlSearch({ post: null, page: page > 1 ? page : null });
-  window.scrollTo({ top: 0, behavior: "auto" });
-}
-
-async function showPost({ slug, push = false } = {}) {
-  const manifest = await getManifestFiles();
-  const match = normalizeFileMatch(manifest, slug);
-  if (!match) {
-    setStatus(STATUS_MESSAGES.notFound, "error");
-    await showList({ page: 1, push });
-    return;
+function getPathPostSlug() {
+  const parts = window.location.pathname.split("/").filter(Boolean);
+  if (parts[0] !== "blog" || parts.length !== 2) return null;
+  try {
+    return decodeURIComponent(parts[1]);
+  } catch {
+    return parts[1];
   }
+}
 
-  const normalized = String(slug || "");
-  let post = cache.posts?.find((p) => p.slug === normalized) || null;
-  if (!post) post = await loadPost(match);
+function setPostUrl(slug, { replace = false } = {}) {
+  const encoded = encodeURIComponent(String(slug || "").trim());
+  if (!encoded) return;
+  const target = `/blog/${encoded}/`;
+  if (replace) history.replaceState({}, "", target);
+  else history.pushState({}, "", target);
+}
 
-  renderPost(post);
-  if (push) setUrlSearch({ post: normalized, page: null });
-  window.scrollTo({ top: 0, behavior: "auto" });
+async function showList({ page = 1, push = false, replace = false } = {}) {
+  const loadingToken = startLoading(STATUS_MESSAGES.loadingList);
+  try {
+    const posts = await getAllPosts();
+    renderList(posts, page);
+    const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
+    const safePage = clamp(page, 1, totalPages);
+    applyListSeo({ page: safePage });
+    if (push || replace) setListUrl(safePage, { replace });
+    window.scrollTo({ top: 0, behavior: "auto" });
+    finishLoading(loadingToken);
+  } catch (error) {
+    finishLoading(loadingToken, {
+      message: STATUS_MESSAGES.loadError,
+      state: "error",
+      persist: true,
+    });
+    throw error;
+  }
+}
+
+async function showPost({ slug, push = false, replace = false } = {}) {
+  const loadingToken = startLoading(STATUS_MESSAGES.loadingPost);
+  try {
+    const manifest = await getManifestFiles();
+    const match = normalizeFileMatch(manifest, slug);
+    if (!match) {
+      finishLoading(loadingToken);
+      setStatus(STATUS_MESSAGES.notFound, "error");
+      await showList({ page: 1, push, replace });
+      return;
+    }
+
+    const normalized = String(slug || "");
+    let post = cache.posts?.find((p) => p.slug === normalized) || null;
+    if (!post) post = await loadPost(match);
+
+    renderPost(post);
+    applyPostSeo(post);
+    if (push || replace) setPostUrl(normalized, { replace });
+    window.scrollTo({ top: 0, behavior: "auto" });
+    finishLoading(loadingToken);
+  } catch (error) {
+    finishLoading(loadingToken, {
+      message: STATUS_MESSAGES.loadError,
+      state: "error",
+      persist: true,
+    });
+    throw error;
+  }
 }
 
 async function syncRouteFromLocation({ replace = false } = {}) {
+  const pathPostSlug = getPathPostSlug();
   const params = new URLSearchParams(window.location.search);
   const postParam = params.get("post");
   const pageParam = Number.parseInt(params.get("page") || "1", 10);
   const safePageParam = Number.isNaN(pageParam) ? 1 : Math.max(1, pageParam);
 
-  if (postParam) {
-    await showPost({ slug: postParam, push: false });
+  if (pathPostSlug) {
+    await showPost({ slug: pathPostSlug, push: false, replace: false });
     return;
   }
 
-  await showList({ page: safePageParam, push: false });
-  if (replace) {
-    setUrlSearch(
-      { post: null, page: safePageParam > 1 ? safePageParam : null },
-      { replace: true }
-    );
+  if (postParam) {
+    await showPost({ slug: postParam, push: false, replace: true });
+    return;
   }
+
+  await showList({ page: safePageParam, push: false, replace });
 }
 
 function renderPagination(page, totalPages) {
@@ -517,7 +731,7 @@ function buildCard(post) {
 
   const link = document.createElement("a");
   link.className = "blog-card__link";
-  link.href = `/blog/?post=${encodeURIComponent(post.slug)}`;
+  link.href = `/blog/${encodeURIComponent(post.slug)}/`;
   link.setAttribute("aria-label", `Read ${title}`);
   link.addEventListener("click", (event) => {
     if (!isPlainLeftClick(event)) return;
@@ -580,6 +794,7 @@ function buildCard(post) {
 
 function renderList(posts, page) {
   setView("list");
+  teardownFloatingAnchors();
 
   if (!dom.grid) return;
   dom.grid.innerHTML = "";
@@ -650,6 +865,7 @@ function renderPost(post) {
   }
 
   buildToc();
+  initFloatingAnchors();
 }
 
 function buildThreatModelDropdowns() {
@@ -743,6 +959,61 @@ function buildToc() {
 }
 
 let progressState = null;
+let floatingAnchorsState = null;
+
+function updateFloatingAnchors() {
+  const postLayout = document.querySelector(".blog-post__layout");
+  if (!postLayout || !document.body.classList.contains("is-blog-post")) return;
+
+  const rootStyles = getComputedStyle(document.documentElement);
+  const headerHeight = Number.parseFloat(rootStyles.getPropertyValue("--headerH")) || 72;
+  const minTop = headerHeight + 24;
+  const layoutTop = postLayout.getBoundingClientRect().top;
+  const anchoredTop = Math.max(minTop, Math.round(layoutTop));
+  const progressHeight = Math.max(
+    220,
+    Math.round(Math.min(window.innerHeight * 0.6, window.innerHeight - anchoredTop - 20))
+  );
+
+  document.documentElement.style.setProperty("--blog-floating-top", `${anchoredTop}px`);
+  document.documentElement.style.setProperty("--blog-progress-height", `${progressHeight}px`);
+}
+
+function teardownFloatingAnchors() {
+  if (floatingAnchorsState?.cleanup) floatingAnchorsState.cleanup();
+  floatingAnchorsState = null;
+  document.documentElement.style.removeProperty("--blog-floating-top");
+  document.documentElement.style.removeProperty("--blog-progress-height");
+}
+
+function initFloatingAnchors() {
+  teardownFloatingAnchors();
+
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      updateFloatingAnchors();
+      ticking = false;
+    });
+  };
+
+  const onResize = () => {
+    updateFloatingAnchors();
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onResize);
+  updateFloatingAnchors();
+
+  floatingAnchorsState = {
+    cleanup: () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+    },
+  };
+}
 
 function initProgressTracking(headings) {
   const scroller = document.scrollingElement || document.documentElement;
@@ -869,6 +1140,7 @@ async function init() {
   } catch (error) {
     setView("list");
     setStatus(STATUS_MESSAGES.loadError, "error");
+    applyListSeo({ page: 1 });
     if (dom.count) dom.count.textContent = "0";
   }
 }

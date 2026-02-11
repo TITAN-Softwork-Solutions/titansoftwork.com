@@ -7,6 +7,60 @@
   flex-direction: column;
 }
 
+.blog-loader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 4px;
+  z-index: 120;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 220ms ease;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+}
+
+.blog-loader.is-active {
+  opacity: 1;
+}
+
+.blog-loader__fill {
+  position: relative;
+  height: 100%;
+  width: 0%;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(var(--accentRGB), 0.45) 0%,
+      rgba(var(--accentRGB), 0.98) 52%,
+      rgba(255,255,255,0.96) 100%
+    );
+  box-shadow:
+    0 0 14px rgba(var(--accentRGB), 0.78),
+    0 0 30px rgba(var(--accentRGB), 0.42);
+  transition: width 180ms ease-out;
+  overflow: hidden;
+}
+
+.blog-loader__fill::after {
+  content: "";
+  position: absolute;
+  top: -150%;
+  right: -32px;
+  width: 32px;
+  height: 400%;
+  transform: rotate(24deg);
+  background: linear-gradient(180deg, rgba(255,255,255,0.0), rgba(255,255,255,0.95), rgba(255,255,255,0.0));
+  filter: blur(1px);
+  animation: blogLoaderSweep 680ms linear infinite;
+}
+
+@keyframes blogLoaderSweep {
+  from { right: -32px; opacity: 0.2; }
+  30% { opacity: 0.9; }
+  to { right: -180px; opacity: 0.15; }
+}
+
 .blog-page {
   padding-top: var(--headerH);
   flex: 1;
@@ -30,12 +84,7 @@ body::-webkit-scrollbar {
 .blog-hero {
   position: relative;
   padding: 110px 0 48px;
-  background:
-    linear-gradient(180deg, rgba(0,0,0,0.62), rgba(0,0,0,0.86)),
-    url("/media/images/fabian-kozdon.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: #000;
   border-bottom: 0;
   overflow: hidden;
 }
@@ -55,22 +104,28 @@ body::-webkit-scrollbar {
       transparent 88px
     );
   opacity: 0.55;
+  z-index: 1;
 }
 
 .blog-hero::after {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 18px;
+  inset: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.72));
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.86)),
+    url("/media/images/lucas-santos.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: grayscale(1) contrast(1.14) brightness(0.93) saturate(0.15);
+  transform: scale(1.02);
+  z-index: 0;
 }
 
 .blog-hero > .container {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 html.is-blog-post .blog-hero,
@@ -143,22 +198,24 @@ body.is-blog-post .blog-post__tags {
 }
 
 .blog-status {
-  margin-bottom: 18px;
-  padding: 10px 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(245,245,245,0.16);
-  background: rgba(255,255,255,0.04);
-  color: rgba(245,245,245,0.72);
+  margin: 0 0 14px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(245,245,245,0.66);
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 600;
+  font-family: var(--font-mono);
 }
 
 .blog-status[data-state="error"] {
-  color: rgba(255,188,188,0.95);
-  border-color: rgba(255,140,140,0.4);
-  background: rgba(255,120,120,0.08);
+  color: rgba(255,174,174,0.92);
+}
+
+.blog-status[data-state="loading"] {
+  color: rgba(var(--accentRGB), 0.94);
 }
 
 .blog-grid {
@@ -470,7 +527,7 @@ body.is-blog-post .blog-post-hero {
 .blog-toc {
   position: fixed;
   right: 44px;
-  top: calc(var(--headerH) + 24px);
+  top: var(--blog-floating-top, calc(var(--headerH) + 24px));
   width: 220px;
   text-align: right;
   z-index: 20;
@@ -526,8 +583,8 @@ body.is-blog-post .blog-post-hero {
 .blog-progress {
   position: fixed;
   right: 18px;
-  top: calc(var(--headerH) + 24px);
-  height: 60vh;
+  top: var(--blog-floating-top, calc(var(--headerH) + 24px));
+  height: var(--blog-progress-height, 60vh);
   z-index: 20;
 }
 

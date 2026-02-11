@@ -72,6 +72,72 @@ function initDiscordWidget() {
   if (!inviteCode || !onlineEl || !membersEl) return;
 
   const inviteUrl = `https://discord.com/api/v10/invites/${inviteCode}?with_counts=true&with_expiration=false`;
+  const numberFormatter = new Intl.NumberFormat("en-US");
+
+  let inView = false;
+  let hasAnimatedOnView = false;
+  let latestCounts = null;
+  let animationFrame = 0;
+
+  function parseRenderedNumber(el) {
+    const raw = String(el?.textContent || "").replace(/[^\d]/g, "");
+    if (!raw) return 0;
+    const parsed = Number.parseInt(raw, 10);
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+
+  function renderCounts(online, members) {
+    onlineEl.textContent = numberFormatter.format(Math.max(0, Math.round(online)));
+    membersEl.textContent = numberFormatter.format(Math.max(0, Math.round(members)));
+  }
+
+  function animateCounts(targetOnline, targetMembers, { fromZero = false } = {}) {
+    const safeOnline = Math.max(0, Math.round(Number(targetOnline) || 0));
+    const safeMembers = Math.max(0, Math.round(Number(targetMembers) || 0));
+
+    if (animationFrame) {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+    }
+
+    const startOnline = fromZero ? 0 : parseRenderedNumber(onlineEl);
+    const startMembers = fromZero ? 0 : parseRenderedNumber(membersEl);
+    const durationMs = fromZero ? 1100 : 700;
+    const startTime = performance.now();
+
+    const tick = (now) => {
+      const t = Math.min(1, (now - startTime) / durationMs);
+      const eased = 1 - Math.pow(1 - t, 3);
+
+      const nextOnline = startOnline + (safeOnline - startOnline) * eased;
+      const nextMembers = startMembers + (safeMembers - startMembers) * eased;
+      renderCounts(nextOnline, nextMembers);
+
+      if (t < 1) {
+        animationFrame = requestAnimationFrame(tick);
+        return;
+      }
+      animationFrame = 0;
+      renderCounts(safeOnline, safeMembers);
+    };
+
+    animationFrame = requestAnimationFrame(tick);
+  }
+
+  function applyCounts(online, members) {
+    const safeOnline = Number.isFinite(online) ? online : 0;
+    const safeMembers = Number.isFinite(members) ? members : 0;
+    latestCounts = { online: safeOnline, members: safeMembers };
+
+    if (!inView) {
+      onlineEl.textContent = "--";
+      membersEl.textContent = "--";
+      return;
+    }
+
+    animateCounts(safeOnline, safeMembers, { fromZero: !hasAnimatedOnView });
+    hasAnimatedOnView = true;
+  }
 
   function setLoading() {
     onlineEl.textContent = "--";
@@ -86,8 +152,7 @@ function initDiscordWidget() {
   }
 
   function setCounts(online, members) {
-    onlineEl.textContent = String(online ?? "--");
-    membersEl.textContent = String(members ?? "--");
+    applyCounts(online, members);
     if (note) note.textContent = "Live member counts from Discord.";
   }
 
@@ -114,6 +179,26 @@ function initDiscordWidget() {
   }
 
   setLoading();
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.target !== widget) continue;
+        if (!entry.isIntersecting) {
+          inView = false;
+          continue;
+        }
+        inView = true;
+        if (latestCounts) {
+          animateCounts(latestCounts.online, latestCounts.members, { fromZero: !hasAnimatedOnView });
+          hasAnimatedOnView = true;
+        }
+      }
+    },
+    { threshold: 0.35 }
+  );
+  observer.observe(widget);
+
   refresh();
   
   setInterval(refresh, 60_000);

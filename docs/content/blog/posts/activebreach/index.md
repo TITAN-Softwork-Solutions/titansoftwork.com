@@ -241,6 +241,8 @@ pub unsafe fn ab_call(name: &str, args: &[usize]) -> usize {
 }
 ```
 
+![AB_CALL](./AB_CALL.png)
+
 Intended to be versatile, ``ab_call`` allows you to invoke any ``Nt*`` syscall.
 
 It's used like this;
@@ -399,12 +401,14 @@ Where ABE centralizes and mediates syscall execution through a dispatcher, KFD f
 
 [github.com/dutchpsycho/KFD](https://github.com/dutchpsycho/KFD)
 
-## Takeaway
+## Conclusion
 
-The point of ActiveBreach was never to play cat-and-mouse with individual detection rules. That approach doesn’t scale, and it’s why so much red-team tooling ends up as a collection of brittle tricks glued together under pressure.
+Red-team's have long needed a tool for dealing with API hooking that is secure, stable & configurable, that is the goal of **Activebreach**.
 
-What was missing wasn’t another syscall stub generator, or another way to scrape syscall numbers. It was a cohesive execution model: something reliable, inspectable, and predictable under real defensive scrutiny.
+**ABE** was handcrafted for performing exactly that, a controlled execution model, which was stable and integrateable enough without having the trade-offs and fragility of tooling in the same category.
 
-ABE treats syscall execution as a runtime service, not a code-generation problem. It centralizes execution, controls the stack, bounds exposure, and makes trade-offs explicit instead of accidental. Build-time obfuscation, runtime encryption, stub pooling, and mediated dispatch aren't independent tricks; they exist to support a single goal: making low-level Windows interaction boring again for the operator.
+If you're interested, I would highly reccomend reading the code at;
 
-For red teamers, that means fewer ad-hoc projects to integrate, fewer assumptions about the target environment, and less time spent chasing the latest fragile technique. You call what you need, the system handles how it gets executed, and you move on.
+[Activebreach-Engine (Rust Crate)](https://github.com/dutchpsycho/ActiveBreach-Engine/blob/main/SDK/Rust/src/internal)
+
+This will give you insight to the code design behind **ABE**.

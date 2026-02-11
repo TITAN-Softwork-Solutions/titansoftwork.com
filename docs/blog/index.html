@@ -9,6 +9,7 @@
       content="Field notes, release updates, and security engineering research from TITAN Softwork Solutions."
     />
     <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://titansoftwork.com/blog/" />
     <meta name="theme-color" content="#000000" />
     <meta name="color-scheme" content="dark" />
 
@@ -18,13 +19,16 @@
 
     <script>
       // Prevent the list hero flashing when deep-linking into a post.
-      if (location.search.includes("post=")) {
+      const blogPathParts = location.pathname.split("/").filter(Boolean);
+      const isPathPost = blogPathParts[0] === "blog" && blogPathParts.length === 2;
+      if (location.search.includes("post=") || isPathPost) {
         document.documentElement.classList.add("is-blog-post");
       }
     </script>
 
     <meta property="og:site_name" content="TITAN Softwork Solutions" />
     <meta property="og:title" content="TITAN Softwork Solutions | Insights" />
+    <meta property="og:url" content="https://titansoftwork.com/blog/" />
     <meta
       property="og:description"
       content="Field notes, release updates, and security engineering research from TITAN Softwork Solutions."
@@ -46,13 +50,17 @@
       rel="stylesheet"
     />
 
-    <script type="module" crossorigin src="/assets/blog-jWC0fJUk.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/style-C4AosHVo.js">
-    <link rel="stylesheet" crossorigin href="/assets/style-C72VgoWW.css">
-    <link rel="stylesheet" crossorigin href="/assets/blog-CiBrCUyV.css">
+    <script type="module" crossorigin src="/assets/style-DIVpodoY.js"></script>
+    <script type="module" crossorigin src="/assets/blog-lQW1dYm3.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/style-ZscTnzxF.css">
+    <link rel="stylesheet" crossorigin href="/assets/blog-6nyGc0eh.css">
   </head>
   <body>
     <div id="app" class="blog-app">
+      <div class="blog-loader" id="blog-loader" aria-hidden="true">
+        <div class="blog-loader__fill" id="blog-loader-fill"></div>
+      </div>
+
       <header class="site-header" role="banner">
         <div class="site-header__inner">
           <a class="site-brand" href="/#home" aria-label="TITAN Softwork Solutions Home">

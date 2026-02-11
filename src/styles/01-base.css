@@ -3,6 +3,17 @@
 html, body { height: 100%; }
 html { scroll-behavior: smooth; }
 
+html,
+body {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 body {
   margin: 0;
   background:

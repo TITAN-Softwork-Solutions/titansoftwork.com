@@ -233,17 +233,11 @@
 .section--community {
   position: relative;
   overflow: hidden;
+  background: #000000;
 }
 
 .section--community::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(120deg, rgba(14, 18, 23, 0.08), rgba(255,255,255,0.00) 45%),
-    linear-gradient(320deg, rgba(14, 18, 23, 0.08), rgba(255,255,255,0.00) 55%);
-  opacity: 0.6;
+  content: none;
 }
 
 .stagger > * {

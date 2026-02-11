@@ -67,7 +67,6 @@ function initDiscordWidget() {
   const inviteCode = widget.dataset.invite;
   const onlineEl = widget.querySelector("[data-discord-online]");
   const membersEl = widget.querySelector("[data-discord-members]");
-  const note = widget.querySelector(".communityWidget__note");
   const link = widget.querySelector("[data-discord-link]");
 
   if (!inviteCode || !onlineEl || !membersEl) return;
@@ -143,18 +142,15 @@ function initDiscordWidget() {
   function setLoading() {
     onlineEl.textContent = "--";
     membersEl.textContent = "--";
-    if (note) note.textContent = "Loading Discord counts...";
   }
 
   function setError() {
     onlineEl.textContent = "--";
     membersEl.textContent = "--";
-    if (note) note.textContent = "Counts unavailable. Open the hub.";
   }
 
   function setCounts(online, members) {
     applyCounts(online, members);
-    if (note) note.textContent = "Live member counts from Discord.";
   }
 
   async function refresh() {

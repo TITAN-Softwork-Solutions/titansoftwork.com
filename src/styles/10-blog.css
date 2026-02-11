@@ -176,7 +176,6 @@ body.is-blog-post .blog-post__tags {
 }
 
 .blog-footer {
-  border-top: 1px solid rgba(245,245,245,0.12);
   color: rgba(245,245,245,0.6);
   text-align: center;
   padding: 22px 16px 28px;

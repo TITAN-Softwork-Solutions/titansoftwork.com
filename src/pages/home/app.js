@@ -345,6 +345,12 @@ async function main() {
 
     orbit.controls.enabled = globeForeground;
 
+    // Three.js OrbitControls sets `touch-action: none` on the canvas by default, which
+    // can block page scrolling on mobile when the hero is fullscreen.
+    if (renderer?.domElement) {
+      renderer.domElement.style.touchAction = globeForeground ? "none" : "pan-y";
+    }
+
     if (!globeForeground) {
       if (interactionState.focusActive) focusController.clear();
       clearHeroFocusAttrs();
@@ -420,6 +426,7 @@ async function main() {
 
   let focusLayout = { globeCorner: "TL", cardSide: "right" };
   let focusPin = null;
+  let lastAutoCardIds = new Set();
 
   const cardLayer = createCardLayer({
     hud,
@@ -550,6 +557,37 @@ async function main() {
             alpha: (it.alpha ?? 1) * 0.55,
           }));
         }
+
+        // Small laptop screens get overwhelmed: cap the number of cards and keep the set stable.
+        const maxCards =
+          width <= 1100 || height <= 680
+            ? 2
+            : width <= 1300 || height <= 740
+              ? 3
+              : width <= 1500 || height <= 820
+                ? 4
+                : 6;
+
+        if (visibleItems.length > maxCards) {
+          const bonus = 0.10; // mild stickiness to prevent cards swapping every frame
+
+          visibleItems = visibleItems
+            .map((it) => ({
+              it,
+              score: (it.alpha ?? 1) + (lastAutoCardIds.has(it.id) ? bonus : 0),
+            }))
+            .sort((a, b) => {
+              const ds = (b.score ?? 0) - (a.score ?? 0);
+              if (ds) return ds;
+              const da = (b.it.alpha ?? 1) - (a.it.alpha ?? 1);
+              if (da) return da;
+              return (a.it.id ?? 0) - (b.it.id ?? 0);
+            })
+            .slice(0, maxCards)
+            .map((x) => x.it);
+        }
+
+        lastAutoCardIds = new Set(visibleItems.map((it) => it.id));
       }
 
       const laidOut = cardLayer.update({

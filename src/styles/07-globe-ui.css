@@ -83,10 +83,42 @@
 }
 
 .atlas-card__pattern-dot {
+  --dotRGB: var(--alertRGB);
+  flex: 0 0 8px;
   width: 8px;
   height: 8px;
+  min-width: 8px;
+  min-height: 8px;
+  aspect-ratio: 1 / 1;
+  display: inline-block;
   border-radius: 50%;
-  background: var(--fg);
+  background: rgb(var(--dotRGB));
+  box-shadow:
+    0 0 0 0 rgba(var(--dotRGB), 0.0),
+    0 0 18px rgba(var(--dotRGB), 0.25);
+  animation: breachBlip 1.35s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes breachBlip {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 0 rgba(var(--dotRGB), 0.0),
+      0 0 18px rgba(var(--dotRGB), 0.18);
+  }
+  44% {
+    transform: scale(1.18);
+    box-shadow:
+      0 0 0 7px rgba(var(--dotRGB), 0.14),
+      0 0 22px rgba(var(--dotRGB), 0.38);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 0 rgba(var(--dotRGB), 0.0),
+      0 0 18px rgba(var(--dotRGB), 0.18);
+  }
 }
 
 .atlas-card__snippet {
@@ -119,7 +151,9 @@
 }
 
 .atlas-card--focused .atlas-card__pattern-dot {
-  box-shadow: 0 0 18px rgba(245,245,245,0.14);
+  box-shadow:
+    0 0 0 7px rgba(var(--alertRGB), 0.16),
+    0 0 24px rgba(var(--alertRGB), 0.42);
 }
 
 .atlas-card--focused .atlas-card__title {
@@ -139,6 +173,51 @@
 
 .atlas-card--focused .atlas-card__hint {
   display: none;
+}
+
+/* Laptops: scale cards down (current size becomes the max). Keep the globe readable. */
+@media (max-width: 1500px), (max-height: 820px) {
+  .atlas-card {
+    width: min(320px, calc(100vw - 32px));
+    padding: 12px 12px 10px 12px;
+  }
+
+  .atlas-card--focused {
+    width: min(460px, calc(100vw - 32px));
+  }
+
+  .atlas-card__title {
+    font-size: 15px;
+  }
+
+  .atlas-card__pattern {
+    font-size: 11px;
+  }
+
+  /* Save space: hide the snippet until the card is clicked (focused). */
+  .atlas-card__snippet {
+    display: none;
+  }
+
+  .atlas-card--focused .atlas-card__snippet {
+    display: block;
+  }
+}
+
+/* Smaller laptops: tighter layout + fewer lines when focused. */
+@media (max-width: 1280px), (max-height: 740px) {
+  .atlas-card {
+    width: min(300px, calc(100vw - 28px));
+  }
+
+  .atlas-card--focused {
+    width: min(420px, calc(100vw - 28px));
+  }
+
+  .atlas-card--focused .atlas-card__snippet {
+    font-size: 12.5px;
+    line-height: 1.42;
+  }
 }
 
 .atlas-alt {
@@ -357,5 +436,11 @@
 
   .atlas-card__snippet {
     font-size: 12.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atlas-card__pattern-dot {
+    animation: none;
   }
 }

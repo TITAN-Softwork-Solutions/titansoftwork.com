@@ -10,7 +10,7 @@
 
 .section {
   scroll-margin-top: calc(var(--headerH) + 20px);
-  padding: 96px 0;
+  padding: clamp(104px, 10vh, 140px) 0;
 }
 
 .section__eyebrow {
@@ -24,7 +24,7 @@
 
 .section__title {
   margin: 0;
-  font-size: clamp(30px, 3.6vw, 52px);
+  font-size: clamp(32px, 3.6vw, 62px);
   letter-spacing: 0.04em;
   font-family: var(--font-display);
   font-weight: 900;
@@ -33,9 +33,9 @@
 .section__lead {
   margin-top: 14px;
   color: rgba(245,245,245,0.74);
-  font-size: 15px;
-  line-height: 1.7;
-  max-width: 920px;
+  font-size: clamp(16px, 1.05vw, 18px);
+  line-height: 1.75;
+  max-width: 980px;
 }
 
 .section__lead a {
@@ -133,4 +133,17 @@
   .section__title {
     font-size: clamp(24px, 8vw, 32px);
   }
+}
+
+/* Ultrawide layouts: use more horizontal real-estate so the site doesn't feel "lost" in the middle. */
+@media (min-width: 2200px) {
+  .container { max-width: 1520px; }
+}
+
+@media (min-width: 2800px) {
+  .container { max-width: 1720px; }
+}
+
+@media (min-width: 3400px) {
+  .container { max-width: 1880px; }
 }

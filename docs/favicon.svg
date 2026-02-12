@@ -1,4 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="8" fill="#050506"/>
-  <path d="M14 16h36v8H36v24h-8V24H14z" fill="#f5f2ea"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-label="TITAN icon">
+  <!-- Single compound path (no background, no internal seam lines). 
+       Uses evenodd to punch the two inner slits out of the silhouette. -->
+  <path fill="#C8C8C8" fill-rule="evenodd" d="
+    M 36 22
+    Q 54 54 82 68
+    Q 104 79 112 92
+    L 112 188
+    Q 112 212 128 242
+    Q 144 212 144 188
+    L 144 92
+    Q 152 79 174 68
+    Q 202 54 220 22
+    Q 206 72 182 118
+    Q 165 150 150 164
+    Q 142 172 138 184
+    L 128 220
+    L 118 184
+    Q 114 172 106 164
+    Q 91 150 74 118
+    Q 50 72 36 22
+    Z
+
+    M 94 78
+    Q 102 84 110 94
+    L 110 176
+    Q 103 182 96 186
+    Q 92 180 92 172
+    L 92 94
+    Q 92 84 94 78
+    Z
+
+    M 162 78
+    Q 164 84 164 94
+    L 164 172
+    Q 164 180 160 186
+    Q 153 182 146 176
+    L 146 94
+    Q 154 84 162 78
+    Z
+  "/>
 </svg>

@@ -8,6 +8,7 @@ export function createCardLayer({ hud, onSelect, onOpen }) {
   hud.appendChild(layer);
 
   const cards = new Map();
+  let lastMeasureKey = "";
 
   function measure(el) {
     const r = el.getBoundingClientRect();
@@ -123,6 +124,19 @@ export function createCardLayer({ hud, onSelect, onOpen }) {
       if (!cards.has(v.id)) {
         cards.set(v.id, makeCard(v.breach, v.id));
       }
+    }
+
+    const measureKey = `${viewport.width}x${viewport.height}|${focus?.active ? 1 : 0}|${focus?.id ?? ""}`;
+    if (measureKey !== lastMeasureKey) {
+      const focusedId = focus?.active ? focus?.id : null;
+      for (const [id, c] of cards.entries()) {
+        const isFocused = focusedId !== null && id === focusedId;
+        c.el.classList.toggle("atlas-card--focused", isFocused);
+        const { w, h } = measure(c.el);
+        c.w = w;
+        c.h = h;
+      }
+      lastMeasureKey = measureKey;
     }
 
     const centerX = viewport.width * 0.5;

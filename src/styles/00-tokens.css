@@ -13,6 +13,11 @@
   --hudDim: rgba(245, 245, 245, 0.62);
   --hudGlow: rgba(245, 245, 245, 0.12);
 
+  /* Team + alert colors */
+  --teamRedRGB: 255, 56, 56;
+  --teamBlueRGB: 80, 165, 255;
+  --alertRGB: var(--teamRedRGB);
+
   /* Monochrome accents (no gold) */
   --accentRGB: 200, 200, 200;
   --accent2RGB: 110, 110, 110;

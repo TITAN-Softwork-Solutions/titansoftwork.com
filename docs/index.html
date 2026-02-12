@@ -53,9 +53,9 @@
       />
     </noscript>
 
-    <script type="module" crossorigin src="/assets/main-Cn2pjOV4.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/style-CItdLGdV.js">
-    <link rel="stylesheet" crossorigin href="/assets/style-BqFfhmgc.css">
+    <script type="module" crossorigin src="/assets/main-Dl7ilQse.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/style-iCa2ZZv5.js">
+    <link rel="stylesheet" crossorigin href="/assets/style-C20fF9Vc.css">
   </head>
   <body>
     <div id="app">
@@ -136,20 +136,148 @@
               <a class="cta cta--ghost" href="#contact">Contact</a>
             </div>
           </div>
+
+          <!-- Shown once per user (localStorage) to hint that the globe is interactive. -->
+          <div class="hero__hint" data-globe-hint hidden>Click the globe to engage</div>
+        </section>
+
+        <script>
+          (() => {
+            const KEY = "titan_globe_hint_seen_v1";
+            const hint = document.querySelector("[data-globe-hint]");
+            const stage = document.getElementById("stage");
+            if (!hint || !stage) return;
+
+            const compactQuery = window.matchMedia("(max-width: 900px), (pointer: coarse)");
+            const isCompactUI = () => compactQuery.matches;
+
+            let alreadySeen = false;
+            try {
+              alreadySeen = localStorage.getItem(KEY) === "1";
+            } catch {}
+
+            if (alreadySeen || isCompactUI()) return;
+
+            hint.hidden = false;
+
+            const dismiss = () => {
+              hint.hidden = true;
+              try {
+                localStorage.setItem(KEY, "1");
+              } catch {}
+            };
+
+            stage.addEventListener(
+              "pointerdown",
+              () => {
+                dismiss();
+              },
+              { capture: true, once: true }
+            );
+
+            const onCompactChange = () => {
+              if (isCompactUI()) hint.hidden = true;
+            };
+            if (compactQuery.addEventListener) compactQuery.addEventListener("change", onCompactChange);
+            else compactQuery.addListener(onCompactChange);
+          })();
+        </script>
+
+        <section id="projects" class="section section--projects section--center">
+          <div class="container">
+            <div class="section__eyebrow">RESEARCH OUTPUTS</div>
+            <h2 class="section__title">FEATURED TITAN DELIVERABLES</h2>
+            <p class="section__lead">
+              Select open research from the TITAN ecosystem.
+            </p>
+
+            <div class="projectBar">
+              <div class="projectBar__label">GitHub org</div>
+              <div class="projectBar__value">
+                <a href="https://github.com/TITAN-Softwork-Solutions" target="_blank" rel="noreferrer">github.com/TITAN-Softwork-Solutions</a>
+              </div>
+              <div class="projectBar__cta">
+                <a class="cta cta--dark" href="https://github.com/TITAN-Softwork-Solutions" target="_blank" rel="noreferrer">Browse repositories</a>
+              </div>
+            </div>
+
+            <div class="grid grid--3 stagger">
+              <a class="project project--link project--team-red" href="https://github.com/8damon/ActiveBreach-Engine" target="_blank" rel="noreferrer" aria-label="Open repository: ActiveBreach Engine">
+                <div class="project__top">
+                  <div class="project__name">ActiveBreach Engine</div>
+                  <div class="project__meta">SysWhispers &amp; HellsGate successor, DSE direct syscall execution framework</div>
+                </div>
+                <p class="project__text">
+                  Dynamic direct-syscall framework for Windows, built as a modern SysWhispers/Hell's Gate successor for
+                  AV/EDR research and hooking-aware execution.
+                </p>
+              </a>
+
+              <a class="project project--link project--team-dual" href="https://github.com/TITAN-Softwork-Solutions/Regera" target="_blank" rel="noreferrer" aria-label="Open repository: Regera">
+                <div class="project__top">
+                  <div class="project__name">Regera</div>
+                  <div class="project__meta">High-entropy compile-time string encryption for Rust</div>
+                </div>
+                <p class="project__text">
+                  Compile-time string encryption for Rust via proc macros with multiple engines, generating encrypted blobs at build
+                  time and compact runtime decrypt shims.
+                </p>
+              </a>
+
+              <a class="project project--link project--team-blue" href="https://github.com/TITAN-Softwork-Solutions/Vesuki-Polymorphic-Control-Flow-Obfuscator" target="_blank" rel="noreferrer" aria-label="Open repository: Vesuki">
+                <div class="project__top">
+                  <div class="project__name">Vesuki</div>
+                  <div class="project__meta">Defensive Rust control-flow obfuscation and anti-analysis tooling</div>
+                </div>
+                <p class="project__text">
+                  Rust control-flow hardening and obfuscation: proc-macro transforms functions into
+                  dispatcher-style execution with randomized noise to raise the cost of static analysis and reversing.
+                </p>
+              </a>
+
+              <a class="project project--link project--team-red" href="https://github.com/TITAN-Softwork-Solutions/CCGT-Packer" target="_blank" rel="noreferrer" aria-label="Open repository: CCGT-Packer">
+                <div class="project__top">
+                  <div class="project__name">CCGT-Packer</div>
+                  <div class="project__meta">Post-build string encryption packing tool</div>
+                </div>
+                <p class="project__text">
+                  Post-build string protection for Windows; encrypts eligible literals, stores metadata in a PE section, and
+                  decrypts on-demand at runtime to reduce static string exposure.
+                </p>
+              </a>
+
+              <a class="project project--link project--team-red" href="https://github.com/8damon/KFD" target="_blank" rel="noreferrer" aria-label="Open repository: KFD">
+                <div class="project__top">
+                  <div class="project__name">KFD</div>
+                  <div class="project__meta">Framework for performing indirect syscalls</div>
+                </div>
+                <p class="project__text">
+                  Indirect syscall execution framework tuned for heavily monitored EDR/AV environments and research-grade constraints.
+                </p>
+              </a>
+
+              <a class="project project--link project--team-blue" href="https://github.com/TITAN-Softwork-Solutions/Vigil" target="_blank" rel="noreferrer" aria-label="Open repository: Vigil">
+                <div class="project__top">
+                  <div class="project__name">Vigil</div>
+                  <div class="project__meta">Blue-team ETW telemetry for sensitive file access</div>
+                </div>
+                <p class="project__text">
+                  Lightweight Windows ETW telemetry for detecting untrusted processes accessing protected filesystem resources.
+                </p>
+              </a>
+            </div>
+          </div>
         </section>
 
         <section id="program" class="section section--program section--center">
           <div class="container">
             <div class="sectionHead sectionHead--program stagger">
               <div class="section__eyebrow">FOCUS</div>
-<h2 class="section__title">OFFENSIVE SECURITY WITH ENGINEERING DISCIPLINE.</h2>
+<h2 class="section__title">OFFENSIVE SECURITY WITH ENGINEERING DISCIPLINE</h2>
 <p class="section__lead">
 We run scoped adversary emulation against Windows environments to identify detection and response gaps. Deliverables include a replayable attack narrative, supporting evidence, and fixes your team can implement.
 </p>
-            <div class="program-industrial__meta" aria-label="Program focus highlights">
-              <span>OUTCOME-DRIVEN</span>
-              <span>RISK REDUCTION</span>
-            </div>
+
             </div>
 
             <div class="program-industrial__grid grid grid--3 stagger" aria-label="Program focus modules">
@@ -206,92 +334,6 @@ We analyze high-risk boundary conditions across kernel and user space to identif
                   </div>
                 </div>
               </article>
-            </div>
-          </div>
-        </section>
-
-        <section id="projects" class="section section--projects section--light section--center">
-          <div class="container">
-            <div class="section__eyebrow">RESEARCH OUTPUTS</div>
-            <h2 class="section__title">FEATURED TITAN DELIVERABLES</h2>
-            <p class="section__lead">
-              Select open research from the TITAN ecosystem.
-            </p>
-
-            <div class="projectBar">
-              <div class="projectBar__label">GitHub org</div>
-              <div class="projectBar__value">
-                <a href="https://github.com/TITAN-Softwork-Solutions" target="_blank" rel="noreferrer">github.com/TITAN-Softwork-Solutions</a>
-              </div>
-              <div class="projectBar__cta">
-                <a class="cta cta--dark" href="https://github.com/TITAN-Softwork-Solutions" target="_blank" rel="noreferrer">Browse repositories</a>
-              </div>
-            </div>
-
-            <div class="grid grid--3 stagger">
-              <a class="project project--link" href="https://github.com/8damon/ActiveBreach-Engine" target="_blank" rel="noreferrer" aria-label="Open repository: ActiveBreach Engine">
-                <div class="project__top">
-                  <div class="project__name">ActiveBreach Engine</div>
-                  <div class="project__meta">SysWhispers &amp; HellsGate successor, DSE direct syscall execution framework</div>
-                </div>
-                <p class="project__text">
-                  Dynamic direct-syscall framework for Windows, built as a modern SysWhispers/Hell's Gate successor for
-                  AV/EDR research and hooking-aware execution.
-                </p>
-              </a>
-
-              <a class="project project--link" href="https://github.com/TITAN-Softwork-Solutions/Regera" target="_blank" rel="noreferrer" aria-label="Open repository: Regera">
-                <div class="project__top">
-                  <div class="project__name">Regera</div>
-                  <div class="project__meta">High-entropy compile-time string encryption for Rust</div>
-                </div>
-                <p class="project__text">
-                  Compile-time string encryption for Rust via proc macros with multiple engines, generating encrypted blobs at build
-                  time and compact runtime decrypt shims.
-                </p>
-              </a>
-
-              <a class="project project--link" href="https://github.com/TITAN-Softwork-Solutions/Vesuki-Polymorphic-Control-Flow-Obfuscator" target="_blank" rel="noreferrer" aria-label="Open repository: Vesuki">
-                <div class="project__top">
-                  <div class="project__name">Vesuki</div>
-                  <div class="project__meta">Defensive Rust control-flow obfuscation and anti-analysis tooling</div>
-                </div>
-                <p class="project__text">
-                  Rust control-flow hardening and obfuscation: proc-macro transforms functions into
-                  dispatcher-style execution with randomized noise to raise the cost of static analysis and reversing.
-                </p>
-              </a>
-
-              <a class="project project--link" href="https://github.com/TITAN-Softwork-Solutions/CCGT-Packer" target="_blank" rel="noreferrer" aria-label="Open repository: CCGT-Packer">
-                <div class="project__top">
-                  <div class="project__name">CCGT-Packer</div>
-                  <div class="project__meta">Post-build string encryption packing tool</div>
-                </div>
-                <p class="project__text">
-                  Post-build string protection for Windows; encrypts eligible literals, stores metadata in a PE section, and
-                  decrypts on-demand at runtime to reduce static string exposure.
-                </p>
-              </a>
-
-              <a class="project project--link" href="https://github.com/8damon/KFD" target="_blank" rel="noreferrer" aria-label="Open repository: KFD">
-                <div class="project__top">
-                  <div class="project__name">KFD</div>
-                  <div class="project__meta">Framework for performing indirect syscalls</div>
-                </div>
-                <p class="project__text">
-                  Indirect syscall execution framework tuned for heavily monitored EDR/AV environments and research-grade constraints.
-                </p>
-              </a>
-
-              <a class="project project--link" href="https://github.com/TITAN-Softwork-Solutions/Vigil" target="_blank" rel="noreferrer" aria-label="Open repository: Vigil">
-                <div class="project__top">
-                  <div class="project__name">Vigil</div>
-                  <div class="project__meta">Blue-team ETW telemetry for sensitive file access</div>
-                </div>
-                <p class="project__text">
-                  Lightweight Windows ETW telemetry for detecting untrusted processes accessing protected filesystem resources.
-                </p>
-              </a>
             </div>
           </div>
         </section>

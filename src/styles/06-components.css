@@ -174,7 +174,9 @@
 
 .project {
   --cardLine: rgba(245,245,245,0.92);
-  border: 1px solid rgba(245,245,245,0.14);
+  --projectBorder: rgba(245,245,245,0.14);
+  --projectBorderHover: rgba(245,245,245,0.28);
+  border: 1px solid var(--projectBorder);
   background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
   border-radius: 0;
   padding: 18px;
@@ -214,7 +216,7 @@
 
 .project--link:hover {
   transform: translateY(-1px);
-  border-color: rgba(245,245,245,0.28);
+  border-color: var(--projectBorderHover);
 }
 
 .project--link:focus-visible {
@@ -222,7 +224,7 @@
 }
 
 .section--light .project--link:hover {
-  border-color: rgba(14, 18, 23, 0.30);
+  border-color: var(--projectBorderHover);
 }
 
 .section--light .project--link:focus-visible {
@@ -231,10 +233,53 @@
 
 .section--light .project {
   --cardLine: rgba(14, 18, 23, 0.88);
-  border-color: rgba(14, 18, 23, 0.12);
+  --projectBorder: rgba(14, 18, 23, 0.12);
+  --projectBorderHover: rgba(14, 18, 23, 0.30);
+  border-color: var(--projectBorder);
   background: #ffffff;
   box-shadow: 0 16px 60px rgba(14, 18, 23, 0.10);
   color: var(--fgDark);
+}
+
+/* Team indicators: encode team identity into the project border, not a tag. */
+.project--team-red {
+  --projectBorder: rgba(var(--teamRedRGB), 0.55);
+  --projectBorderHover: rgba(var(--teamRedRGB), 0.72);
+  --cardLine: rgba(var(--teamRedRGB), 0.92);
+}
+
+.project--team-blue {
+  --projectBorder: rgba(var(--teamBlueRGB), 0.55);
+  --projectBorderHover: rgba(var(--teamBlueRGB), 0.72);
+  --cardLine: rgba(var(--teamBlueRGB), 0.92);
+}
+
+.section--light .project--team-red {
+  --projectBorder: rgba(var(--teamRedRGB), 0.55);
+  --projectBorderHover: rgba(var(--teamRedRGB), 0.72);
+  --cardLine: rgba(var(--teamRedRGB), 0.92);
+}
+
+.section--light .project--team-blue {
+  --projectBorder: rgba(var(--teamBlueRGB), 0.55);
+  --projectBorderHover: rgba(var(--teamBlueRGB), 0.72);
+  --cardLine: rgba(var(--teamBlueRGB), 0.92);
+}
+
+.project--team-dual {
+  --projectBorder: transparent;
+  --projectBorderHover: transparent;
+  border-color: transparent;
+  border-image: linear-gradient(90deg, rgb(var(--teamRedRGB)), rgb(var(--teamBlueRGB))) 1;
+}
+
+.section--light .project--team-dual {
+  border-color: transparent;
+}
+
+.project--team-dual.project--link::after {
+  border: 2px solid transparent;
+  border-image: linear-gradient(90deg, rgb(var(--teamRedRGB)), rgb(var(--teamBlueRGB))) 1;
 }
 
 .project--featured {
@@ -282,6 +327,52 @@
 
 .section--light .project__text {
   color: rgba(14, 18, 23, 0.78);
+}
+
+.section--projects .projectBar {
+  margin: 26px 0 32px 0;
+  padding: 20px 22px;
+  border-color: rgba(245,245,245,0.14);
+  background: #000000;
+  box-shadow: 0 22px 80px rgba(0,0,0,0.55);
+}
+
+.section--projects .projectBar__label {
+  font-size: 13px;
+  color: rgba(245,245,245,0.70);
+}
+
+.section--projects .projectBar__value,
+.section--projects .projectBar__value a {
+  color: rgba(245,245,245,0.92);
+}
+
+.section--projects .projectBar__value a {
+  border-bottom-color: rgba(245,245,245,0.22);
+}
+
+.section--projects .projectBar__value a:hover {
+  border-bottom-color: rgba(245,245,245,0.62);
+}
+
+.section--projects .project {
+  padding: clamp(22px, 2.2vw, 34px);
+  gap: 14px;
+  /* Pure black cards in the deliverables section. */
+  background: #000000;
+}
+
+.section--projects .project__name {
+  font-size: clamp(22px, 2.2vw, 30px);
+}
+
+.section--projects .project__meta {
+  font-size: 13px;
+}
+
+.section--projects .project__text {
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.7;
 }
 
 .project__links a {
@@ -599,6 +690,34 @@ body.modal-open {
 
   .projectBar__label {
     font-size: 11px;
+  }
+
+  /* Keep mobile project cards tight (mobile layout was already tuned). */
+  .section--projects .projectBar {
+    margin: 22px 0 26px 0;
+    padding: 14px;
+  }
+
+  .section--projects .projectBar__label {
+    font-size: 11px;
+  }
+
+  .section--projects .project {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .section--projects .project__name {
+    font-size: 18px;
+  }
+
+  .section--projects .project__meta {
+    font-size: 12px;
+  }
+
+  .section--projects .project__text {
+    font-size: 14px;
+    line-height: 1.6;
   }
 
   .projectBar__value,

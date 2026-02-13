@@ -721,6 +721,132 @@ function formatMetaLine(post) {
   return parts.length ? parts.join(" • ") : "Undated";
 }
 
+const TAG_ICON_RULES = [
+  { type: "windows", match: /\bwindows\b/i },
+  { type: "hook", match: /\bhooks?\b/i },
+  { type: "kernel", match: /\bkernel\b/i },
+  { type: "api", match: /\bapi\b/i },
+  { type: "runtime", match: /\bruntime\b/i },
+  { type: "static", match: /\bstatic\b/i },
+];
+
+function createSvgNode(name, attributes = {}) {
+  const node = document.createElementNS("http://www.w3.org/2000/svg", name);
+  Object.entries(attributes).forEach(([key, value]) => {
+    node.setAttribute(key, String(value));
+  });
+  return node;
+}
+
+function resolveTagIconType(tag) {
+  const normalized = String(tag || "").trim();
+  const match = TAG_ICON_RULES.find((rule) => rule.match.test(normalized));
+  return match?.type || "tag";
+}
+
+function createTagIcon(type) {
+  const svg = createSvgNode("svg", {
+    viewBox: "0 0 16 16",
+    "aria-hidden": "true",
+    focusable: "false",
+  });
+
+  if (type === "windows") {
+    svg.appendChild(createSvgNode("rect", { x: 1, y: 1, width: 6, height: 6, fill: "currentColor" }));
+    svg.appendChild(createSvgNode("rect", { x: 9, y: 1, width: 6, height: 6, fill: "currentColor" }));
+    svg.appendChild(createSvgNode("rect", { x: 1, y: 9, width: 6, height: 6, fill: "currentColor" }));
+    svg.appendChild(createSvgNode("rect", { x: 9, y: 9, width: 6, height: 6, fill: "currentColor" }));
+    return svg;
+  }
+
+  if (type === "hook") {
+    svg.appendChild(createSvgNode("path", {
+      d: "M9 2v6a3 3 0 1 1-3-3",
+      fill: "none",
+      stroke: "currentColor",
+      "stroke-width": 1.7,
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round",
+    }));
+    svg.appendChild(createSvgNode("circle", { cx: 9, cy: 2, r: 1.1, fill: "currentColor" }));
+    return svg;
+  }
+
+  if (type === "kernel") {
+    svg.appendChild(createSvgNode("rect", {
+      x: 4,
+      y: 4,
+      width: 8,
+      height: 8,
+      rx: 1,
+      fill: "none",
+      stroke: "currentColor",
+      "stroke-width": 1.5,
+    }));
+    svg.appendChild(createSvgNode("rect", { x: 7, y: 7, width: 2, height: 2, fill: "currentColor" }));
+    return svg;
+  }
+
+  if (type === "api") {
+    svg.appendChild(createSvgNode("path", {
+      d: "M6 3L2 8l4 5M10 3l4 5-4 5",
+      fill: "none",
+      stroke: "currentColor",
+      "stroke-width": 1.7,
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round",
+    }));
+    return svg;
+  }
+
+  if (type === "runtime") {
+    svg.appendChild(createSvgNode("circle", {
+      cx: 8,
+      cy: 8,
+      r: 6,
+      fill: "none",
+      stroke: "currentColor",
+      "stroke-width": 1.5,
+    }));
+    svg.appendChild(createSvgNode("path", {
+      d: "M7 5.7l3.5 2.3L7 10.3z",
+      fill: "currentColor",
+    }));
+    return svg;
+  }
+
+  if (type === "static") {
+    svg.appendChild(createSvgNode("path", {
+      d: "M3.5 8h9M8 3.5v9",
+      fill: "none",
+      stroke: "currentColor",
+      "stroke-width": 1.7,
+      "stroke-linecap": "round",
+    }));
+    return svg;
+  }
+
+  svg.appendChild(createSvgNode("circle", { cx: 8, cy: 8, r: 3, fill: "currentColor" }));
+  return svg;
+}
+
+function buildTagChip(tag) {
+  const chip = document.createElement("span");
+  chip.className = "blog-tag";
+
+  const icon = document.createElement("span");
+  icon.className = "blog-tag__icon";
+  icon.appendChild(createTagIcon(resolveTagIconType(tag)));
+
+  const label = document.createElement("span");
+  label.className = "blog-tag__label";
+  label.textContent = tag;
+
+  chip.appendChild(icon);
+  chip.appendChild(label);
+  return chip;
+}
+
 function buildCard(post) {
   const title = post.title || "Untitled post";
   const dateLabel = formatMetaLine(post);
@@ -763,10 +889,7 @@ function buildCard(post) {
     const tags = document.createElement("div");
     tags.className = "blog-card__tags";
     post.tags.forEach((tag) => {
-      const chip = document.createElement("span");
-      chip.className = "blog-tag";
-      chip.textContent = tag;
-      tags.appendChild(chip);
+      tags.appendChild(buildTagChip(tag));
     });
     body.appendChild(tags);
   }
